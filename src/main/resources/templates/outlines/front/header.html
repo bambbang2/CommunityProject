@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <header th:fragment="common">
+        <section class="left">로고</section>
+
+        <section class="right" >
+            <th:block sec:authorize="isAuthenticated()"> <!-- 로그인한 상태 -->
+                <span th:text="${#messages.msg('member.login.msg', session.memberInfo.userNm,
+                session.memberInfo.userId)}"></span>
+                <a th:href="@{/member/logout}" th:text="#{member.logout}" class="sbtn carrot"></a>
+                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}" th:text="#{adminPage}"}></a>
+            </th:block>
+
+            <th:block sec:authorize="isAnonymous()">
+                <a th:href="@{/member/join}" th:text="#{member.join}" class="sbtn"></a>
+                <a th:href="@{/member/login}" th:text="#{member.login}" class="sbtn carrot"></a>
+            </th:block>
+        </section>
+    </header>
+</html>

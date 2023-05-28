@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 /**
  * 공통 예외 ( messages 사용 )
  */
+
 public class CommonException extends RuntimeException {
 
     // validations 메세지 코드

@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @GetMapping
-    public String index() {
+    public String index(){
 
-        return "admin/main/index";
+        return "admin/index";
+    }
+
+    @GetMapping("/config")
+    public String config(){
+
+        return "admin/config";
     }
 }

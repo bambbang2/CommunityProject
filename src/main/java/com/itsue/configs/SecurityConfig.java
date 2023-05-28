@@ -18,16 +18,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        /*
         http.formLogin()
                 .loginPage("/member/login")
                 .successHandler(new LoginSuccessHandler())
-                .usernameParameter("userId") // id 값 추가 필요
-                .passwordParameter("userPw") // pw 값 추가 필요
+                .usernameParameter("userId")
+                .passwordParameter("userPw")
                 .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/");
+         */
 
 
                 /** 회원가입 구현 후 주석 해제 예정 */
@@ -43,15 +45,14 @@ public class SecurityConfig {
          */
         http.exceptionHandling()
                 .authenticationEntryPoint((req, res, e) -> {
-
-                    String redirectUrl = "/member/login";
                     String URI = req.getRequestURI();
-                    if (URI.indexOf("/admin") != -1) {
-                        res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        redirectUrl = "/error/401";
-                    }
 
-                    res.sendRedirect(req.getContextPath() + redirectUrl);
+                    if (URI.indexOf("/admin") != -1) { // 관리자 페이지
+                        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "NOT AUTHORIZED");
+                    } else { // 회원 전용 페이지
+                        String redirectURL = req.getContextPath() + "/member/login";
+                        res.sendRedirect(redirectURL);
+                    }
                 });
 
         http.headers().frameOptions().sameOrigin();

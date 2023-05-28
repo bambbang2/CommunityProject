@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice("com.itsue.controllers")
 public class ErrorsController {
+
     @ExceptionHandler(Exception.class)
     public String errorHandler(Exception e, Model model, HttpServletRequest request, HttpServletResponse response){
         int status = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;

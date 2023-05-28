@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import static org.springframework.http.ResponseEntity.status;
+
 @RestControllerAdvice("com.itsue.controllers.restcontrollers")
 public class CommonRestControllers {
 
@@ -25,7 +27,6 @@ public class CommonRestControllers {
                 .status(status)
                 .build();
 
-        return ResponseEntity.status(status).body(jsonData);
-
+        return status(status).body(jsonData);
     }
 }

@@ -1,7 +1,7 @@
 /** 사이트 공통 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 ::-webkit-scrollbar {  width: 5px; height: 5px; }
-::-webkit-scrollbar-thumb { background: #777676; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #FFB98B; border-radius: 3px; }
 * { box-sizing: border-box; outline: none; font-family: 'Nanum Gothic', sans-serif; }
 html { font-size: 13px; color: #222; }
 body { margin: 0; }
@@ -20,40 +20,69 @@ textarea { border: 1px solid #d5d5d5; width: 100%; resize: none; padding: 20px; 
 select { height: 35px; border: 1px solid #d5d5d5; background: #fff; min-width: 130px; }
 
 /** 기준 너비 */
-.layout_width { max-width: 1300px; min-width: 1100px; margin: 0 auto; padding: 0 10px; }
+.layout_width { max-width: 1300px; min-width: 110px; margin: 0 auto; padding: 0 10px; }
 
+/** 기본 스타일 */
+input[type='text'],
+input[type='number'],
+input[type='password'],
+input[type='email'],
+input[type='date'] { border: 1px solid #d5d5d5; width: 100%; height: 45px; padding: 0 10px; border-radius: 3px; }
+textarea { border: 1px solid #d5d5d5; width: 100%; min-height: 150px; padding: 10px; resize: none; }
+
+/**  기본 스타일 - 체크박스, 라디오 버튼 */
 input[type='checkbox'] { display: none; }
-input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background: url("../../images/chk-off.png") no-repeat left center; }
-input[type='checkbox']:checked+label { background: url("../../images/chk-on.png") no-repeat left center; }
+input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 35px;
+ background:url("../../images/chk-off.png") no-repeat left center; }
+input[type='checkbox']:checked+label { background:url("../../images/chk-on.png") no-repeat left center; }
 
 input[type='radio'] { display: none; }
-input[type='radio']+label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px; background: url("../../images/radio-off.png") no-repeat left center; }
-input[type='radio']:checked+label { background: url("../../images/radio-on.png") no-repeat left center; }
+input[type='radio']+label { min-height: 24px; line-height: 1; padding: 3px 0 3px 25px;
+ background:url("../../images/radio-off.png") no-repeat left center; }
+input[type='radio']:checked+label { background:url("../../images/radio-on.png") no-repeat left center; }
 
-input:read-only, textarea:read-only { background-color: #f8f8f8; }
-select option:disabled { color: red; background-color: #f8f8f8; }
 
 .dn { display: none !important; }
 
 /** 기본 레이아웃 스타일 */
 header { height: 80px; background: #fff; display: flex; align-items: center; }
 header > .left { width: 208px; text-align: center; }
-header > .right { flex-grow: 1; text-align: right; padding: 10px; }
+header > .center { flex-grow: 1; text-align: center; }
+header > .right { text-align: right; padding: 10px; }
 
 main { min-width: 1100px; min-height: 800px; display: flex; }
-main > aside { width: 208px; background: #777676; }
+main > aside { width: 208px; background: #FFB98B; }
 main > section { flex-grow: 1; margin: 50px; }
 
-aside li > a { display: block; height: 71px; line-height: 71px; border-top: 1px solid #504e48; color: #dddee4; font-size: 18px; text-align: center; position: relative; }
-aside li > a * { color: #dddee4; font-size: 18px; }
+aside li > a { display: block; height: 71px; line-height: 71px; border-top: 1px solid #FFB98B; color: #fff;
+ font-size: 18px; text-align: center; position: relative; }
+aside li > a * { color: #fff; font-size: 18px; }
 aside li > a:hover,
-aside li > a.on { background: #696969; font-weight: bold; }
+aside li > a.on { background: #FF7E36; font-weight: bold; }
 aside li > a:hover:after,
-aside li > a.on:after { content: ''; display: block; position: absolute; width: 8px; height: 100%; right: 0; top: 0; }
+aside li > a.on:after { content: ''; display: block; position: absolute; width: 8px; height: 100%;
+ right: 0; top: 0; background: #00d0d7; }
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #777676; color: #777676; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
-.sbtn.gray { color: #fff; background:#777676; }
+.sbtn { display: inline-block; border: 1px solid #FFB98B; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn.carrot { color: #fff; background: #FFB98B; }
 
+.btns { display: flex; width: 400px; margin: 0 auto; }
+.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 18px; border: 1px solid #000; }
+.btns > button:last-of-type { background: #000; color: #fff; }
 
+/** 기본 메세지 상자 스타일 */
+.message { box-shadow: 2px 2px 5px #36466d; padding: 15px 25px; text-align: center; background: #fff; font-size: 18px; color: #36466d; margin-bottom: 10px; border-radius: 5px; }
+
+/** 기본 제목 스타일 */
+h1 { font-size: 30px; font-weight: bold; margin: 0; margin-bottom: 25px; line-height: 1; padding: 0; }
+
+/** 기본 테이블 스타일 */
+.table-cols { width: 100%; border-spacing: 0; padding: 0; border-top: 3px solid #222; margin-bottom: 20px; }
+.table-cols th { background: #f8f8f8; width: 160px; padding: 10px 20px; text-align: left; }
+.table-cols td { background: #fff; padding: 10px 15px; }
+.table-cols th,
+.table-cols td { border-bottom: 1px solid #d5d5d5; }
+
+/** 에러 메세지 스타일 */
 .errors { box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px; border-radius: 3px; margin-top: 5px; color: #61729e; }

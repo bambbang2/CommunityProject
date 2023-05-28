@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-scurity">
     <header th:fragment="common">
-        <section class="left">
-            <h1>ITSUE</h1>
-        </section>
+        <section class="left">로고</section>
+
+        <section class="center">관리자 내용</section>
+
         <section class="right">
             <!-- 회원일 경우 -->
             <th:block sec:authorize="isAuthenticated()">
-                <a th:href="@{/member/logout}" th:text="#{member.logout}" class="sbtn gray"></a>
+                <a th:href="@{/member/logout}" th:text="#{member.logout}" class="sbtn carrot"></a>
 
                 <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{adminPage}"></a>
             </th:block>
@@ -16,7 +17,7 @@
             <!-- 비회원일 경우 -->
             <th:block sec:authorize="isAnonymous()">
                 <a th:href="@{/member/join}" th:text="#{member.join}" class="sbtn"></a>
-                <a th:href="@{/member/login}" th:text="#{member.login}" class="sbtn gray"></a>
+                <a th:href="@{/member/login}" th:text="#{member.login}" class="sbtn carrot"></a>
             </th:block>
         </section>
     </header>

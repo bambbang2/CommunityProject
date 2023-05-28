@@ -1,5 +1,6 @@
 package com.itsue.exception;
 
+import com.itsue.dto.MemberInfo;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,9 +13,11 @@ import java.io.IOException;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                        Authentication authentication) throws IOException, ServletException {
 
         // 1. 세션에 담긴 로그인 에러 메세지 삭제 (세션 초기화)
+
         HttpSession session = request.getSession();
         session.removeAttribute("userId");
         session.removeAttribute("requiredUserId");
@@ -23,9 +26,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         // 2. 로그인한 회원 정보 쉽게 확인하도록 세션 처리
 
+        MemberInfo memberInfo = (MemberInfo) authentication.getPrincipal();
+        session.setAttribute("memberInfo", memberInfo);
 
-        // 3. 로그인 성공시 메인 페이지 이동
-        String url = request.getContextPath() + "/";
+        String url = request.getContextPath() + "/"; // 메인으로 이동
         response.sendRedirect(url);
     }
 }
