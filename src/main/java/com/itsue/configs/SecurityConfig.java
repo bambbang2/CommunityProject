@@ -18,21 +18,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-
         http.formLogin()
                 .loginPage("/member/login")
-                .successHandler(new LoginSuccessHandler())
                 .usernameParameter("userId")
                 .passwordParameter("userPw")
+                .successHandler(new LoginSuccessHandler())
                 .failureHandler(new LoginFailureHandler())
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/member/login");
 
-
-
-                /** 회원가입 구현 후 주석 해제 예정 */
+        /** 회원가입 구현 후 주석 해제 예정 */
 //        http.authorizeHttpRequests()
 //                .requestMatchers("/", "/member/**", "/error/**").permitAll()
 //                .requestMatchers("/member/mypage/**").hasAuthority("USER")
