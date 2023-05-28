@@ -64,7 +64,7 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
  right: 0; top: 0; background: #00d0d7; }
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #FF7E36; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn { display: inline-block; border: 1px solid #FF7E36; color: #FF7E36; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
 .sbtn.carrot { color: #fff; background: #FF7E36; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }

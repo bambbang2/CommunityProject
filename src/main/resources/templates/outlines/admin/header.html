@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-scurity">
     <header th:fragment="common">
-        <section class="left">로고</section>
+        <section class="left">
+            <a th:href="@{/admin}">
+                <img src="/images/IM_logo.png" alt="logo">
+            </a>
+            </section>
 
         <section class="center">관리자 내용</section>
 
