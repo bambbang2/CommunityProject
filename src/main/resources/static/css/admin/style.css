@@ -1,7 +1,7 @@
 /** 사이트 공통 */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
 ::-webkit-scrollbar {  width: 5px; height: 5px; }
-::-webkit-scrollbar-thumb { background: #FFB98B; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: #FF7E36; border-radius: 3px; }
 * { box-sizing: border-box; outline: none; font-family: 'Nanum Gothic', sans-serif; }
 html { font-size: 13px; color: #222; }
 body { margin: 0; }
@@ -64,8 +64,8 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
  right: 0; top: 0; background: #00d0d7; }
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #FFB98B; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
-.sbtn.carrot { color: #fff; background: #FFB98B; }
+.sbtn { display: inline-block; border: 1px solid #FF7E36; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn.carrot { color: #fff; background: #FF7E36; }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
 .btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 18px; border: 1px solid #000; }

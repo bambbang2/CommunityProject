@@ -18,7 +18,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        /*
+
         http.formLogin()
                 .loginPage("/member/login")
                 .successHandler(new LoginSuccessHandler())
@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
                 .logoutSuccessUrl("/");
-         */
+
 
 
                 /** 회원가입 구현 후 주석 해제 예정 */
