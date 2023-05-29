@@ -1,6 +1,7 @@
 package com.itsue.configs.interceptors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.itsue.commons.configs.ConfigInfoService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +19,16 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class SiteConfigInterceptor implements HandlerInterceptor {
 
+    private final ConfigInfoService infoService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         
         /** 사이트 설정 조회 */
+        Map<String, String> siteConfigs = infoService.get("siteConfig",
+                new TypeReference<Map<String, String>>(){});
 
-        request.setAttribute("cssJsVersion", 1);
-
-        // error
-
+        request.setAttribute("siteConfig", siteConfigs);
 
         return true;
     }

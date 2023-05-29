@@ -26,18 +26,18 @@ public class ConfigController {
         commonProcess(model);
         ConfigForm configForm = infoService.get(code, ConfigForm.class);
 
-        if (configForm != null) {
-            log.info(configForm.toString());
-        }
-        model.addAttribute("configForm", configForm);
+        model.addAttribute("configForm", configForm == null ? new ConfigForm() : configForm);
+
         return "admin/config";
     }
 
     @PostMapping
-    public String configPs(ConfigForm configForm, Errors errors, Model model){
+    public String configPs(ConfigForm configForm, Model model){
         commonProcess(model);
 
         saveService.save(code, configForm);
+
+        model.addAttribute("message", "설정이 저장되었습니다!");
 
         return "admin/config";
     }

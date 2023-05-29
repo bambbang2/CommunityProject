@@ -4,36 +4,34 @@
       layout:decorate="~{layouts/admin/main}">
 
 <section layout:fragment="content">
-
     <h1 th:text="${title}"></h1>
 
     <th:block th:replace="~{admin/commons/_message::message}"></th:block>
 
-    <form name="frmSave" method="post" th:action="@{/admin/config}" autocapitalize="off" th:object="${configForm}">
+    <form name="frmSave" method="post" th:action="@{/admin/config}" autocomplete="off" th:object="${configForm}">
         <table class="table-cols">
             <tr>
                 <th>사이트 제목</th>
-
                 <td>
-                    <input type="text" name="siteTitle" >
+                    <input type="text" name="siteTitle" th:field="*{siteTitle}">
                 </td>
             </tr>
             <tr>
                 <th>사이트 설명</th>
                 <td>
-                    <textarea name="siteDescription" ></textarea>
+                    <textarea name="siteDescription" th:field="*{siteDescription}"></textarea>
                 </td>
             </tr>
             <tr>
-                <th>CSS, JS 버전</th>
+                <th>CSS,JS 버전</th>
                 <td>
-                    <input type="number" name="cssJsVersion" >
+                    <input type="number" name="cssJsVersion" th:field="*{cssJsVersion}">
                 </td>
             </tr>
             <tr>
                 <th>회원가입약관</th>
                 <td>
-                    <textarea name="joinTerms" ></textarea>
+                    <textarea name="joinTerms" th:field="*{joinTerms}"></textarea>
                 </td>
             </tr>
         </table>
