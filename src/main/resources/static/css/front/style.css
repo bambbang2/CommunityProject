@@ -50,8 +50,8 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
  right: 0; top: 0; background: #00d0d7; }
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #FFB98B; color: #596b99; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
-.sbtn.carrot { color: #fff; background: #FFB98B; }
+.sbtn { display: inline-block; border: 1px solid #FF7E36; color: #FF7E36; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn.carrot { color: #fff; background: #FF7E36; }
 
 /** 에러 메세지 스타일 */
 .errors { box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px; border-radius: 3px; margin-top: 5px; color: #61729e; }

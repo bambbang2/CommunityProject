@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <header th:fragment="common">
-        <section class="left">로고</section>
+        <section class="left">
+            <a th:href="@{/}">
+                <img src="/images/IM_logo.png" alt="logo">
+            </a>
+        </section>
 
         <section class="right" >
             <th:block sec:authorize="isAuthenticated()"> <!-- 로그인한 상태 -->
