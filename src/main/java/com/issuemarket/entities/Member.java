@@ -33,7 +33,7 @@ public class Member extends BaseEntity {
     private String mobile;  // 핸드폰
 
     @Lob
-    private String termsAgree;  // 약관 동의
+    private String termsAgree;  // 약관 동의 내역
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
