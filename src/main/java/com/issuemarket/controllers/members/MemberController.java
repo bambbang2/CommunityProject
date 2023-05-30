@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
-public class LoginController {
+public class MemberController {
 
     private final MemberSaveService saveService;
 
@@ -52,6 +52,5 @@ public class LoginController {
     private void commonProcess(Model model) {
         model.addAttribute("pageTitle", "회원가입");
     }
-
 
 }
