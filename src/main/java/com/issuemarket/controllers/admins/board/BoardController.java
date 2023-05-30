@@ -1,4 +1,4 @@
-package com.itsue.controllers.admins.board;
+package com.issuemarket.controllers.admins.board;
 
 import com.itsue.commons.MenuForm;
 import com.itsue.commons.Menus;

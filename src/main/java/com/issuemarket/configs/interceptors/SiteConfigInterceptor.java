@@ -1,15 +1,14 @@
 package com.issuemarket.configs.interceptors;
 
-<<<<<<< HEAD:src/main/java/com/itsue/configs/interceptors/SiteConfigInterceptor.java
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.itsue.commons.configs.ConfigInfoService;
-=======
->>>>>>> 6b63e823bf1738b28f09cc6881e7b13c94e60b0a:src/main/java/com/issuemarket/configs/interceptors/SiteConfigInterceptor.java
+import com.issuemarket.commons.configs.ConfigInfoService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import java.util.Map;
 
 /**
  * 사이트 설정 유지
