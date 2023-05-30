@@ -2,6 +2,7 @@ package com.issuemarket.controllers.members;
 
 import com.issuemarket.dto.MemberJoin;
 import com.issuemarket.service.MemberSaveService;
+import com.issuemarket.validators.member.JoinValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ public class LoginController {
 
     private final MemberSaveService saveService;
 
+    private final JoinValidator joinValidator;
+
     @GetMapping("/join")
     public String join(@ModelAttribute MemberJoin memberJoin, Model model) {
         commonProcess(model);
@@ -29,6 +32,7 @@ public class LoginController {
     @PostMapping("/join")
     public String joinPs(@Valid MemberJoin memberJoin, Errors errors, Model model) {
         commonProcess(model);
+        joinValidator.validate(memberJoin, errors);
 
         if(errors.hasErrors()) {
             return "member/join";
