@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layouts/front/main}">
+
+    <main layout:fragment="content">
+        <form method="post" name="frmJoin" th:action="@{/member/join}" th:object="${memberJoin}" autocomplete="off">
+            <div>
+                <input type="text" name="userId" th:field="*{userId}" th:placeholder="#{userId}">
+                <div class="errors" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
+            </div>
+
+            <div>
+                <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{userPw}">
+                <div class="errors" th:each="err : ${#fields.errors('userPw')}" th:text="${err}"></div>
+            </div>
+
+            <div>
+                <input type="password" name="userPwRe" th:field="*{userPwRe}" th:placeholder="#{userPwRe}">
+                <div class="errors" th:each="err : ${#fields.errors('userPwRe')}" th:text="${err}"></div>
+            </div>
+
+            <div>
+                <input type="text" name="userNm" th:field="*{userNm}" th:placeholder="#{userNm}">
+                <div class="errors" th:each="err : ${#fields.errors('userNm')}" th:text="${err}"></div>
+            </div>
+
+            <div>
+                <input type="text" name="userNick" th:field="*{userNick}" th:placeholder="#{userNick}">
+                <div class="errors" th:each="err : ${#fields.errors('userNick')}" th:text="${err}"></div>
+            </div>
+
+            <div>
+                <input type="text" name="mobile" th:field="*{mobile}" th:placeholder="#{mobile}">
+                <div class="errors" th:each="err : ${#fields.errors('mobile')}" th:text="${err}"></div>
+            </div>
+
+            <div>
+                <div class="terms"></div>
+                <input type="checkbox" name="agrees" value="true" id="agrees">
+                <label for="agrees" th:text="#{terms.agree}"></label>
+            </div>
+
+
+            <button type="submit" th:text="#{member.action.join}" class="sbtn"></button>
+        </form>
+    </main>
+</html>
