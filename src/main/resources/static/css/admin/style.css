@@ -47,7 +47,8 @@ input[type='radio']:checked+label { background:url("../../images/radio-on.png") 
 /** 기본 레이아웃 스타일 */
 header { height: 80px; background: #fff; display: flex; align-items: center; }
 header > .left { width: 208px; text-align: center; }
-header > .center { flex-grow: 1; text-align: center; }
+header > .center { flex-grow: 1; text-align: center; color: #fff; font-size: 20px;
+ -webkit-text-stroke: 0.2px #FF7E36; text-shadow: 2px 2px 2px #FF7E36, 3px 3px 0px #FFB98B; }
 header > .right { text-align: right; padding: 10px; }
 
 main { min-width: 1100px; min-height: 800px; display: flex; }
@@ -75,7 +76,8 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 .message { box-shadow: 2px 2px 5px #36466d; padding: 15px 25px; text-align: center; background: #fff; font-size: 18px; color: #36466d; margin-bottom: 10px; border-radius: 5px; }
 
 /** 기본 제목 스타일 */
-h1 { font-size: 30px; font-weight: bold; margin: 0; margin-bottom: 25px; line-height: 1; padding: 0; }
+h1 { font-size: 30px; font-weight: bold; margin: 0; margin-bottom: 35px; line-height: 1; padding: 0; }
+h2 { font-size: 18px; font-weight: bold; margin: 0; margin: 25px 0 10px; line-height: 1; }
 
 /** 기본 테이블 스타일 */
 .table-cols { width: 100%; border-spacing: 0; padding: 0; border-top: 3px solid #222; margin-bottom: 20px; }
@@ -86,3 +88,9 @@ h1 { font-size: 30px; font-weight: bold; margin: 0; margin-bottom: 25px; line-he
 
 /** 에러 메세지 스타일 */
 .errors { box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px; border-radius: 3px; margin-top: 5px; color: #61729e; }
+
+/** 서브 메뉴 */
+nav.submenus { background: #fff; box-shadow: 1px 1px 5px #cdced5; margin-bottom: 30px; display: flex;
+ height: 60px; }
+nav.submenus a.on { background: #FF7E36; color: #fff; font-weight: bold; }
+nav.submenus a { line-height: 60px;  padding: 0 40px; font-size: 18px;  }

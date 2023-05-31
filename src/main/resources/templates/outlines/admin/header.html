@@ -8,7 +8,10 @@
             </a>
         </section>
 
-        <section class="center">관리자 내용</section>
+        <section class="center">
+            <th:block th:if="${pageTitle != null}" th:text="${menuCode + '''s '}"></th:block>
+            <th:block th:text="${pageTitle}"></th:block>
+        </section>
 
         <section class="right">
             <!-- 회원일 경우 -->

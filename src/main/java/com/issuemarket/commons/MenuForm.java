@@ -1,4 +1,4 @@
-package com.itsue.commons;
+package com.issuemarket.commons;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class MenuForm {
 
+    private String code;
     private String name;
     private String url;
 }

@@ -1,28 +1,57 @@
 package com.issuemarket.controllers.admins.board;
 
-import com.itsue.commons.MenuForm;
-import com.itsue.commons.Menus;
+
+import com.issuemarket.commons.MenuForm;
+import com.issuemarket.commons.Menus;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller("adminBoardController")
 @RequestMapping("admin/board")
+@RequiredArgsConstructor
 public class BoardController {
+
+    private final HttpServletRequest request;
 
     @GetMapping
     public String index(Model model){
-        commonProcess(model);
+        commonProcess(model, "게시판 목록");
 
         return "admin/board/index";
     }
 
-    private void commonProcess(Model model){
+    @GetMapping("/register")
+    public String register(Model model){
+        commonProcess(model, "게시판 등록");
+
+        return "admin/board/boardConfig";
+    }
+
+    @GetMapping("/update/{bId}")
+    public String update(@PathVariable String bId, Model model){
+        commonProcess(model, "게시판 수정");
+
+        return "admin/board/boardConfig";
+    }
+
+    private void commonProcess(Model model, String title){
+        // 서브 메뉴 코드
+        String subMenuCode = Menus.getSubMenuCode(request);
+        model.addAttribute("subMenuCode", subMenuCode);
+
         List<MenuForm> submenus = Menus.gets("board");
         model.addAttribute("submenus",submenus);
+
+        model.addAttribute("pageTitle", title);
+        model.addAttribute("title", title);
+        model.addAttribute("menuCode", "board");
     }
 
 }
