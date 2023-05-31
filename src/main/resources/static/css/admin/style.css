@@ -47,9 +47,10 @@ input[type='radio']:checked+label { background:url("../../images/radio-on.png") 
 /** 기본 레이아웃 스타일 */
 header { height: 80px; background: #fff; display: flex; align-items: center; }
 header > .left { width: 208px; text-align: center; }
-header > .center { flex-grow: 1; text-align: center; color: #fff; font-size: 20px;
- -webkit-text-stroke: 0.2px #FF7E36; text-shadow: 2px 2px 2px #FF7E36, 3px 3px 0px #FFB98B; }
+header > .center { flex-grow: 1; text-align: center; color: #fff; font-size: 20px; font-weight: bold; }
+header > .center > .center_back { display:inline-block; background: #FF7E36; padding: 10px; border-radius: 8px; }
 header > .right { text-align: right; padding: 10px; }
+
 
 main { min-width: 1100px; min-height: 800px; display: flex; }
 main > aside { width: 208px; background: #FFB98B; }
