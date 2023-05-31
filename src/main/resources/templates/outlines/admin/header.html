@@ -8,9 +8,12 @@
             </a>
         </section>
 
+
         <section class="center">
-            <th:block th:if="${pageTitle != null}" th:text="${menuCode + '''s '}"></th:block>
-            <th:block th:text="${pageTitle}"></th:block>
+            <div class="center_back">
+                <th:block th:if="${pageTitle != null}" th:text="${menuCode + '''s '}"></th:block>
+                <th:block th:text="${pageTitle}"></th:block>
+            </div>
         </section>
 
         <section class="right">
