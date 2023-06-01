@@ -3,36 +3,43 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
     <main layout:fragment="content">
-        <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off" th:object="${memberLogin}">
-            <div>
-                <input type="text" name="userId" th:placeholder="#{userId}" th:value="${session.userId}" th:field="*{userId}">
-                <div class="errors" th:if="${session.requiredUserId != null}" th:text="${session.requiredUserId}"></div>
-            </div>
+        <div class="memberM">
+            <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off" th:object="${memberLogin}">
 
-            <div>
-                <input type="password" name="userPw" th:placeholder="#{userPw}"th:field="*{userPw}">
-                <div class="errors" th:if="${session.requiredUserPw != null}" th:text="${session.requiredUserPw}"></div>
-            </div>
+                <h1 style="text-align: center;" th:text="${pageTitle}"></h1>
 
-            <div>
-                <a th:href="@{/member/find_id}">
-                    <i class="xi-search"></i>
-                    [[#{findId}]]
-                </a>
-                <a th:href="@{/member/find_pw}">
-                    <i class="xi-search"></i>
-                    [[#{findPw}]]</a>
-                <a th:href="@{/member/join}">
-                    <i class="xi-user-plus"></i>
-                    [[#{member.join}]]
-                </a>
-            </div>
+                <div>
+                    <input type="text" name="userId" th:placeholder="#{userId}" th:value="${session.userId}" th:field="*{userId}">
+                    <div class="errors" th:if="${session.requiredUserId != null}" th:text="${session.requiredUserId}"></div>
+                </div>
 
-            <div class="errors global" th:if="${session.global != null}" th:text="${session.global}"></div>
+                <div>
+                    <input type="password" name="userPw" th:placeholder="#{userPw}"th:field="*{userPw}">
+                    <div class="errors" th:if="${session.requiredUserPw != null}" th:text="${session.requiredUserPw}"></div>
+                </div>
 
-            <input type="checkbox" name="savedId" value="true" id="savedId">
-            <label for="savedId" th:text="#{savedId}"></label>
-            <button type="submit" th:text="#{member.login}" class="sbtn carrot"></button>
-        </form>
+                <div>
+                    <a th:href="@{/member/find_id}">
+                        <i class="xi-search"></i>
+                        [[#{findId}]]
+                    </a>
+                    <a th:href="@{/member/find_pw}">
+                        <i class="xi-search"></i>
+                        [[#{findPw}]]</a>
+                    <a th:href="@{/member/join}">
+                        <i class="xi-user-plus"></i>
+                        [[#{member.join}]]
+                    </a>
+                </div>
+
+                <div class="errors global" th:if="${session.global != null}" th:text="${session.global}"></div>
+
+                <div>
+                    <input type="checkbox" name="savedId" value="true" id="savedId">
+                    <label for="savedId" th:text="#{savedId}" th:field="*{savedId}"></label>
+                </div>
+                <button type="submit" th:text="#{member.login}" class="sbtn carrot member"></button>
+            </form>
+        </div>
     </main>
 </html>

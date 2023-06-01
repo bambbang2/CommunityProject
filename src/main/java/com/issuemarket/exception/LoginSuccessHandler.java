@@ -2,6 +2,7 @@ package com.issuemarket.exception;
 
 import com.issuemarket.dto.MemberInfo;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -28,6 +29,16 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         MemberInfo memberInfo = (MemberInfo) authentication.getPrincipal();
         session.setAttribute("memberInfo", memberInfo);
+
+        // 아이디 쿠키 저장
+        String savedId = request.getParameter("savedId");
+        Cookie cookie = new Cookie("savedId", memberInfo.getUserId());
+        if (savedId == null) { // 쿠키 삭제
+            cookie.setMaxAge(0);
+        } else { // 쿠키 등록
+            cookie.setMaxAge(60 * 60 * 24 * 365);
+        }
+        response.addCookie(cookie);
 
         String url = request.getContextPath() + "/"; // 메인으로 이동
         response.sendRedirect(url);

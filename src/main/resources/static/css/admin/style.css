@@ -32,7 +32,7 @@ textarea { border: 1px solid #d5d5d5; width: 100%; min-height: 150px; padding: 1
 
 /**  기본 스타일 - 체크박스, 라디오 버튼 */
 input[type='checkbox'] { display: none; }
-input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 35px;
+input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 8px 0 8px 35px;
  background:url("../../images/chk-off.png") no-repeat left center; }
 input[type='checkbox']:checked+label { background:url("../../images/chk-on.png") no-repeat left center; }
 
@@ -76,8 +76,9 @@ aside .main_menu .subs li.on a { background: #FF7E36; color: #fff; }
 
 
 /** 기본 버튼 스타일 */
-.sbtn { display: inline-block; border: 1px solid #FF7E36; color: #FF7E36; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; }
+.sbtn { display: inline-block; border: 1px solid #FF7E36; color: #FF7E36; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; background: #fff; }
 .sbtn.carrot { color: #fff; background: #FF7E36; }
+.sbtn.carrot.member { color: #fff; background: #FF7E36; width: 100% }
 
 .btns { display: flex; width: 400px; margin: 0 auto; }
 .btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 18px; border: 1px solid #000; }

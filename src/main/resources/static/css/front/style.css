@@ -23,7 +23,7 @@ select { height: 35px; border: 1px solid #d5d5d5; background: #fff; min-width: 1
 .layout_width { max-width: 1300px; min-width: 1100px; margin: 0 auto; padding: 0 10px; }
 
 input[type='checkbox'] { display: none; }
-input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 3px 0 3px 33px; background: url("../../images/chk-off.png") no-repeat left center; }
+input[type='checkbox']+label { min-height: 32px; line-height: 1; padding: 8px 0 8px 33px; background: url("../../images/chk-off.png") no-repeat left center; }
 input[type='checkbox']:checked+label { background: url("../../images/chk-on.png") no-repeat left center; }
 
 input[type='radio'] { display: none; }
@@ -52,6 +52,11 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 /** 기본 버튼 스타일 */
 .sbtn { display: inline-block; border: 1px solid #FF7E36; color: #FF7E36; min-width: 90px; padding: 0 20px; height: 28px; line-height: 26px; text-align: center; border-radius: 5px; background: #fff; }
 .sbtn.carrot { color: #fff; background: #FF7E36; }
+.sbtn.carrot.member { color: #fff; background: #FF7E36; width: 100% }
 
 /** 에러 메세지 스타일 */
 .errors { box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px; border-radius: 3px; margin-top: 5px; color: #61729e; }
+
+/** 폼 메뉴 */
+.memberM { display: flex; justify-content: center; margin: 30px 0; }
+.memberM div { margin: 15px 0; }
