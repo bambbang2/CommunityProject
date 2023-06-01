@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/cafe-style.css">
+    <style>
+        @charset "utf-8";
+
+        @font-face {
+            font-family: 'HallymMjo-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/HallymMjo-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* 기본적인 세팅 */
+        *{
+            margin:0;
+            padding:0;
+        }
+        a{
+            text-decoration: none;
+            display: block;
+        }
+
+        h1{
+            font-size: 1.8em;
+        }
+        h2{
+            font-size: 1.3em;
+        }
+        p{
+            font-size: 1.3em;
+            line-height: 2.5;
+        }
+        li{
+            font-size: 1em;
+            line-height: 2;
+            list-style: none;
+        }
+        body{
+            width:1200px;
+            margin: 0 auto; /* 가운데 정렬 */
+            border: 1px solid #ccc;
+            background-color: #fff;
+            font-family: 'HallymMjo-Regular', 'sans-serif';
+        }
+
+
+        header{
+            width:100%;
+            height: 500px;
+
+        }
+
+        nav{
+            height: 50px;
+            background-color: #222;
+        }
+
+        #main-nav{
+            text-align: center;
+            padding: 5px;
+        }
+
+        #main-nav li{
+            display: inline-block;
+            color:#fff;
+            font-size: 1em;
+            padding: 5px 40px;
+
+        }
+        nav a:link,
+        nav a:visited,
+        #top a:link,
+        #top a:visited{
+            color: rgb(240, 240, 240);
+        }
+
+        nav a:hover{
+            color: #a6e4c4;
+        }
+
+        nav a:active{
+            color: rgb(212, 212, 112);
+        }
+
+        /* section - 본문 */
+        section{
+            position:relative;
+            width: 100%;
+
+            padding: 15px 5% 10px 5%;
+        }
+        #intro, #search, #community{
+
+            box-sizing: border-box;
+            height: 430px;
+        }
+        section:nth-child(2n+1){
+            background-color: #eee;
+        }
+        .page-title{
+            position:absolute;
+            top:20px;
+        }
+        section h1{
+            margin-top: 30px;
+        }
+        #intro .contents,
+        #search .contents,
+        #community.contents{
+                position: absolute;
+                top: 130px;
+                width: 80%;
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            .text{
+                width: 40%;
+            }
+            .photo img{
+                max-width: 320px;
+                height: auto;
+            }
+            #intro .contents,
+            #search .contents{
+                flex-direction: row;
+            }
+            #community .contents{
+                flex-direction: row-reverse;
+            }
+            #communitychoice .photo{
+                margin-left: 30px;
+            }
+            #community .text ol{
+                text-align: justify;
+                margin-top: 20px;
+            }
+            #community .text li{
+                list-style: decimal;
+                margin-left: 16px;
+            }
+            #communitye img{
+                border: 1px solid #fff;
+                border-radius: 50%;
+            }
+            footer{
+                width: 100%;
+                height: 100px;
+                background: #222;
+            }
+            footer p{
+                line-height: 100px;
+                color: #fff;
+                text-align: center;
+            }
+            #top{
+                position: fixed;
+                bottom: 100px;
+                right: 12%;
+            }
+
+            .btn-black{
+                border-radius: 50%;
+                color:#fff;
+                background-color: #222;
+                border: 1px solid #fff;
+                width: 35px;
+                height: 35px;
+            }
+        </style>
+
+</head>
+<body>
+<header id="header">
+    <nav>
+        <ul id="main-nav">
+            <li>중고거래</a></li>
+            <li>공지사항</a></li>
+            <li>마이페이지</a></li>
+        </ul>
+    </nav>
+
+</header>
+<section id="intro">
+    <div class="page-title">
+        <h1>중고거래</h1>
+    </div>
+    <div class="contents">
+        <div class="photo">
+            <img src="./images/carrot.jpg" alt="지도 아이콘">
+        </div>
+        <div class="text">
+            <p>인기매물 보기</p>
+            <p>믿을수 있는 중고거래 </p>
+            <i><small>우리동네 중고 직거래 마켓</small></i>
+        </div>
+    </div>
+</section>
+<section id="search">
+    <div class="page-title">
+        <h1>중고거래 인기검색어</h1>
+    </div>
+    <div class="contents">
+        <div class="photo">
+            <img src="./images/bike.jpg" alt="상품 사진">
+        </div>
+        <div class="text">
+            <p>노트북</p>
+            <p>식탁</p>
+            <p>책상</p>
+            <p>아이폰 13 PRO</p>
+        </div>
+    </div>
+</section>
+<section id="community">
+    <div class="page-title">
+        <h1>커뮤니티</h1>
+    </div>
+    <div class="contents">
+        <div class="photo">
+            <img src="./images/metting.jpg" alt="모임 로고">
+        </div>
+        <div class="text">
+            <h2>동네 소모임 게시판</h2>
+            <ol>
+                <li>독서 모임</li>
+                <li>운동 모임</li>
+                <li>댄스모임</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <p><em>Project Name!!</em></p>
+</footer>
+<div id="top">
+    <button type="button" class="btn-black round">
+        <a href="#header">↑</a>
+    </button>
+</div>
+
+</div>
+</body>
+</html>
