@@ -3,14 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
     <main layout:fragment="content">
-        <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off">
+        <form name="frmLogin" method="post" th:action="@{/member/login}" autocomplete="off" th:object="${memberLogin}">
             <div>
-                <input type="text" name="userId" th:placeholder="#{userId}" th:value="${session.userId}">
+                <input type="text" name="userId" th:placeholder="#{userId}" th:value="${session.userId}" th:field="*{userId}">
                 <div class="errors" th:if="${session.requiredUserId != null}" th:text="${session.requiredUserId}"></div>
             </div>
 
             <div>
-                <input type="password" name="userPw" th:placeholder="#{userPw}">
+                <input type="password" name="userPw" th:placeholder="#{userPw}"th:field="*{userPw}">
                 <div class="errors" th:if="${session.requiredUserPw != null}" th:text="${session.requiredUserPw}"></div>
             </div>
 
@@ -30,7 +30,8 @@
 
             <div class="errors global" th:if="${session.global != null}" th:text="${session.global}"></div>
 
-            <button type="button" th:text="#{savedId}" class="sbtn"></button>
+            <input type="checkbox" name="savedId" value="true" id="savedId">
+            <label for="savedId" th:text="#{savedId}"></label>
             <button type="submit" th:text="#{member.login}" class="sbtn carrot"></button>
         </form>
     </main>

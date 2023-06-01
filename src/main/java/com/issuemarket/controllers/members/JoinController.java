@@ -1,22 +1,22 @@
 package com.issuemarket.controllers.members;
 
 import com.issuemarket.dto.MemberJoin;
+import com.issuemarket.dto.MemberLogin;
 import com.issuemarket.service.MemberSaveService;
 import com.issuemarket.validators.member.JoinValidator;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/member")
 @RequiredArgsConstructor
-public class MemberController {
+public class JoinController {
 
     private final MemberSaveService saveService;
 
@@ -43,14 +43,7 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
-    @GetMapping("/login")
-    public String login(){
-
-        return "member/login";
-    }
-
     private void commonProcess(Model model) {
         model.addAttribute("pageTitle", "회원가입");
     }
-
 }
