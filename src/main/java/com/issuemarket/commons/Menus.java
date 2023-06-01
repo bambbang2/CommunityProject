@@ -1,12 +1,18 @@
 package com.issuemarket.commons;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class Menus {
+
+    public List<MenuForm> _gets(String code) {
+        return Menus.gets(code);
+    }
 
     public static List<MenuForm> gets(String code) { // _submenu
         List<MenuForm> menus = new ArrayList<>();

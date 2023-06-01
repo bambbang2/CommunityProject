@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <th:block th:fragment="menus">
-        <nav class="submenus" th:if="${submenus != null && #lists.size(submenus) > 0}">
-            <a th:classappend="${subMenuCode == menu.code} ? 'on'"
-               th:each="menu : ${submenus}" th:href="@{{url}(url=${menu.url})}" th:text="${menu.name}"></a>
-        </nav>
+
+        <div class="side_slide" id="jsSide">
+        <ul class="side_list" id="jsList" th:if="${submenus != null && #lists.size(submenus) > 0}">
+            <li class="side_item" th:classappend="${subMenuCode == menu.code} ? 'on'"
+                th:each="menu : ${submenus}">
+                <a th:href="@{{url}(url=${menu.url})}" th:text="${menu.name}"></a>
+            </li>
+        </ul>
+        </div>
     </th:block>
 </html>

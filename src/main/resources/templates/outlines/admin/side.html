@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <aside th:fragment="menu">
-        <ul>
-            <li>
-                <a th:href="@{/admin/config}" th:classappend="${menuCode} == 'config' ? 'on'">
+        <ul class="main_menu">
+            <li th:classappend="${menuCode} == 'config' ? 'on'">
+                <a th:href="@{/admin/config}">
                     <i class="xi-wrench"></i>
                     사이트 설정</a>
             </li>
-            <li>
-                <a th:href="@{/admin/board}" th:classappend="${menuCode} == 'board' ? 'on'">
+            <li th:classappend="${menuCode} == 'board' ? 'on'">
+                <a th:href="@{/admin/board}">
                     <i class="xi-list-square"></i>
                     게시판 관리</a>
+                <ul class="subs">
+                    <li class="sub"
+                        th:each="menu : ${@menus._gets('board')}" th:classappend="${subMenuCode == menu.code} ? 'on'">
+                        <a th:href="@{{url}(url=${menu.url})}" th:text="${menu.name}"></a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </aside>
