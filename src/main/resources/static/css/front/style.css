@@ -57,6 +57,15 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 /** 에러 메세지 스타일 */
 .errors { box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px; border-radius: 3px; margin-top: 5px; color: #61729e; }
 
+
 /** 폼 메뉴 */
 .memberM { display: flex; justify-content: center; margin: 30px 0; }
 .memberM div { margin: 15px 0; }
+
+/** 게시판 스타일 */
+#save {background: #00c8ff; font-weight: 600; color: #fff; box-shadow: 0 4px 12px -4px rgba(0, 140, 180, .5);}
+
+#save:hover{opacity: 1;}
+
+#save:active{ transform: scale(.975);}
+
