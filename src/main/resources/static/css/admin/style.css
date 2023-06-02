@@ -80,9 +80,9 @@ aside .main_menu .subs li.on a { background: #FF7E36; color: #fff; }
 .sbtn.carrot { color: #fff; background: #FF7E36; }
 .sbtn.carrot.member { color: #fff; background: #FF7E36; width: 100% }
 
-.btns { display: flex; width: 400px; margin: 0 auto; }
-.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 18px; border: 1px solid #000; }
-.btns > button:last-of-type { background: #000; color: #fff; }
+.btns { display: flex; width: 350px; margin: 0 auto; }
+.btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 16px; font-weight: bold; border: 1px solid #FFB98B; background: #fff; color: #FF7E36; border-bottom-left-radius: 20px; border-top-right-radius: 20px; margin-right: 20px; }
+.btns > button:last-of-type { background: #FF7E36; color: #fff; }
 
 /** 기본 메세지 상자 스타일 */
 .message { box-shadow: 2px 2px 5px #36466d; padding: 15px 25px; text-align: center; background: #fff; font-size: 18px; color: #36466d; margin-bottom: 10px; border-radius: 5px; }

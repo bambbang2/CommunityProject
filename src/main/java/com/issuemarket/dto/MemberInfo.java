@@ -1,17 +1,18 @@
 package com.issuemarket.dto;
 
 import com.issuemarket.commons.constants.Role;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-@Data
-@Builder
+@Data @Builder
+@NoArgsConstructor @AllArgsConstructor
 public class MemberInfo implements UserDetails {
-
 
     /**
      * 유저 entity 기입

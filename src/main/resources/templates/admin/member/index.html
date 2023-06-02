@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin/main}">
+<section layout:fragment="content">
+    <h1 th:text="${title}"></h1>
+
+    <form name="frmSave" method="post" th:action="@{/admin/member}" autocomplete="off">
+        <table class="table-cols">
+            <thead>
+                <th>회원 번호</th>
+                <th>권한</th>
+                <th>아이디</th>
+                <th>회원명</th>
+                <th>닉네임</th>
+                <th>핸드폰 번호</th>
+                <th>가입 날짜</th>
+            </thead>
+
+            <tbody>
+                <td>
+
+                </td>
+                <td>
+                    <select>
+                        <option value="USER">회원</option>
+                        <option value="ADMIN">관리자</option>
+                    </select>
+                </td>
+                <td>
+                    asasdfads
+                </td>
+                <td>
+                    asasdfads
+                </td>
+                <td>
+                    asasdfads
+                </td>
+                <td>
+                    asasdfads
+                </td>
+                <td>
+                    asasdfads
+                </td>
+            </tbody>
+        </table>
+        <div class="btns">
+            <button type="submit">저장하기</button>
+        </div>
+    </form>
+</section>
+</html>
