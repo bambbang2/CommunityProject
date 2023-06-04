@@ -1,4 +1,4 @@
-package com.issuemarket.service;
+package com.issuemarket.service.front.member;
 
 import com.issuemarket.entities.Member;
 import com.issuemarket.repositories.MyPageRepository;
@@ -18,5 +18,4 @@ public class MyPageService {
 
        return member;
     }
-
 }

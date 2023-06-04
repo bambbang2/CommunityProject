@@ -15,10 +15,4 @@ public class MainController {
         return "admin/index";
     }
 
-    @GetMapping("/board")
-    public String board(Model model){
-
-        model.addAttribute("addCss",new String[]{"front/style"});
-        return "layouts/front/board";
-    }
 }
