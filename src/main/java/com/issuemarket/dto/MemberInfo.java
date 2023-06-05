@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 
 @Data @Builder
@@ -25,6 +26,9 @@ public class MemberInfo implements UserDetails {
     private String mobile;
 
     private Role roles;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
     private Collection<GrantedAuthority> authorities;
 

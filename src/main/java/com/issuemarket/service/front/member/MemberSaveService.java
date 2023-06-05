@@ -1,4 +1,4 @@
-package com.issuemarket.service;
+package com.issuemarket.service.front.member;
 
 import com.issuemarket.dto.MemberJoin;
 import com.issuemarket.entities.Member;

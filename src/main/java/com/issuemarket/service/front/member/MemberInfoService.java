@@ -1,4 +1,4 @@
-package com.issuemarket.service;
+package com.issuemarket.service.front.member;
 
 import com.issuemarket.dto.MemberInfo;
 import com.issuemarket.entities.Member;
@@ -39,8 +39,5 @@ public class MemberInfoService implements UserDetailsService {
                 .roles(member.getRoles())
                 .authorities(authorities)
                 .build();
-
     }
-
-
 }
