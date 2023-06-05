@@ -3,7 +3,65 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/admin/main}">
     <section layout:fragment="content">
+        <h1>게시판 검색</h1>
+        <form name="frmSearch" method="get" th:action="@{/admin/board}" autocomplete="off" th:object="${boardSearch}">
+            <table class="table-cols">
+                <tr>
+                    <th>검색어</th>
+                    <td>
+                        <div class="input_grp">
+                            <select name="sopt" th:field="*{sopt}">
+                                <option value="all">통합검색</option>
+                                <option value="bId">게시판ID</option>
+                                <option value="bName">게시판명</option>
+                            </select>
+                            <input type="text" name="skey" th:field="*{skey}" placeholder="검색어 입력..."
+                            style="margin-left: 15px; width: 70%; height: 35px;">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="search_btn">
+                <button type="submit">조회하기</button>
+            </div>
+        </form>
+
         <h1 th:text="${title}"></h1>
+        <form name="frmList" method="post" th:action="@{/admin/board}" target="ifrmProcess">
+            <input type="hidden" name="_method" value="patch">
+            <table class="table-rows">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="checkall" id="checkall" data-target-name="bId">
+                            <label for="checkall"></label>
+                        </th>
+                        <th>게시판 ID</th>
+                        <th>게시판명</th>
+                        <th>설정</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item, status : ${items}" th:object="${item}">
+                        <td>
+                            <input type="checkbox" name="bId" th:value="*{bId}" th:id="${'bId_' + status.index}">
+                            <label th:for="${'bId_' + status.index}"></label>
+                        </td>
+                        <td th:text="*{bId}"></td>
+                        <td th:text="*{bName}"></td>
+                        <td>
+                            <a th:href="@{/admin/board/update/{bId}(bId=*{bId})}" class="sbtn">설정보기</a>
+                            <a th:href="@{/board/list/{bId}(bId=*{bId})}" class="sbtn carrot">게시판 바로가기</a>
+                            <a th:href="@{/board/write/{bId}(bId=*{bId})}" class="sbtn">글쓰기</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-action">
+                <button type="button" class="sbtn">수정하기</button>
+                <button type="button" class="sbtn carrot">삭제하기</button>
+            </div>
+        </form>
 
     </section>
 </html>

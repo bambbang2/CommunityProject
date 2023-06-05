@@ -11,7 +11,7 @@ import org.springframework.validation.Errors;
 
 @Service
 @RequiredArgsConstructor
-public class BoardConfigService {
+public class BoardConfigSaveService {
 
     private final BoardRepository boardRepository;
 

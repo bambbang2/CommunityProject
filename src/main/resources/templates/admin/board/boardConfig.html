@@ -5,6 +5,7 @@
 <section layout:fragment="content">
     <h1 th:text="${title}"></h1>
     <form name="frmSave" method="post" th:action="@{/admin/board/save}" th:object="${boardForm}">
+        <input th:if="*{mode != null}" type="hidden" name="mode" th:field="*{mode}">
         <div class="message" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
         <h2>설정</h2>
         <table class="table-cols">

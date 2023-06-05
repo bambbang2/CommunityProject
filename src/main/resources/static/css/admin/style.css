@@ -84,6 +84,10 @@ aside .main_menu .subs li.on a { background: #FF7E36; color: #fff; }
 .btns > button { width: 0; flex-grow: 1; height: 50px; font-size: 16px; font-weight: bold; border: 1px solid #FFB98B; background: #fff; color: #FF7E36; border-bottom-left-radius: 20px; border-top-right-radius: 20px; margin-right: 20px; }
 .btns > button:last-of-type { background: #FF7E36; color: #fff; }
 
+.search_btn { text-align: center; margin: 20px 0 35px; }
+.search_btn button { text-align: center; height: 45px; line-height: 45px; background: #fff; color: #FF7E36; padding: 0 30px; border: 1px solid #FF7E36; font-size: 16px; cursor:pointer }
+.search_btn button:hover { font-weight: bold; text-decoration: underline; }
+
 /** 기본 메세지 상자 스타일 */
 .message { box-shadow: 2px 2px 5px #36466d; padding: 15px 25px; text-align: center; background: #fff; font-size: 18px; color: #36466d; margin-bottom: 10px; border-radius: 5px; }
 
@@ -97,6 +101,14 @@ h2 { font-size: 18px; font-weight: bold; margin: 0; margin: 25px 0 10px; line-he
 .table-cols td { background: #fff; padding: 10px 15px; }
 .table-cols th,
 .table-cols td { border-bottom: 1px solid #d5d5d5; }
+
+.table-rows { width: 100%; border-spacing: 0; padding: 0; }
+.table-rows th { background: #7a7c89; color: #fff; border-top: 1px solid #d5d5d5; padding: 12px 10px; }
+.table-rows td { padding: 15px 10px; text-align: center; }
+.table-rows th, .table-rows td { border-bottom: 1px solid #d5d5d5; border-right: 1px solid #d5d5d5; }
+.table-rows th:first-of-type, .table-rows td: first-of-type { border-left: 1px solid #d5d5d5; }
+
+.table-action { padding: 10px 0; border-bottom: 1px solid #d5d5d5; }
 
 /** 에러 메세지 스타일 */
 .errors { box-shadow: 2px 2px 5px #36466d; padding: 5px 15px; background: #fff; font-size: 12px; border-radius: 3px; margin-top: 5px; color: #61729e; }

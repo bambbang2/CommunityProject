@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Arrays;
+
 @Entity @Data @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -64,4 +66,14 @@ public class Board extends BaseMemberEntity {
 
     private boolean useComment; // 댓글
 
+    // 게시판 카테고리
+    public String[] getCategories() {
+        if (category == null) {
+            return null;
+        }
+
+        String[] categories = category.replaceAll("\\r", "").trim().split("\\n");
+
+        return categories;
+    }
 }
