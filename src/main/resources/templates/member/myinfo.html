@@ -4,15 +4,70 @@
       layout:decorate="~{layouts/front/main}">
 <main layout:fragment="content">
 
-
-
-
-     <span th:text="${member.userNo}"></span>
+<!--         <span th:text="${member.userNo}"></span>
     <span th:text="${member.userId}"></span>
     <span th:text="${member.userPw}"></span>
     <span th:text="${member.userNm}"></span>
     <span th:text="${member.userNick}"></span>
-    <span th:text="${member.mobile}"></span>
+    <span th:text="${member.mobile}"></span>-->
 
+    <form method="post" th:action="@{/member/myinfo}" th:object="${member}">
+        <th:block th:if="${userNo}">
+            <input type="hidden" th:field="*{userNo}">
+        </th:block>
+
+        <div>
+            <div style="border: 1px solid red;">
+                <span> 아이디</span>
+                <input type="text"  th:field="*{userId}">
+            </div>
+            <div style="border: 1px solid blue;">
+                <span>비밀번호</span>
+                <input type="password"  th:field="*{userPw}">
+            </div>
+            <div style="border: 1px solid blue;">
+                <span>새 비밀번호</span>
+                <input type="password"  th:field="*{userNewPw}">
+            </div>
+            <div style="border: 1px solid blue;">
+                <span>새 비밀번호 확인</span>
+                <input type="password"  th:field="*{userNewPwRe}">
+            </div>
+            <div style="border: 1px solid green;">
+                <span> 이름</span>
+                <input type="text"  th:field="*{userNm}">
+            </div>
+
+            <div style="border: 1px solid green;">
+                <span>닉네임</span>
+                <input type="text"  th:field="*{userNick}">
+            </div>
+            <div style="border: 1px solid green;">
+                <span>핸드폰</span>
+                <input type="text"  th:field="*{mobile}">
+            </div>
+        </div>
+        <button type="submit">수정하기</button>
+    </form>
+
+  <!--  <form method="post" th:action="@{/member/myinfo}" th:object="${member}">
+
+        <dl>
+            <dt th:text="#{userId}"></dt>
+            <dd>
+                <input type="text" name="userId" th:field="*{userId}">
+                <div class="errors" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+
+
+    -->
+
+    <script>
+        const errorMessage = "[[${errorMessage}]]";
+        if(errorMessage != ""){
+            alert(errorMessage);
+        }
+    </script>
 </main>
 </html>
