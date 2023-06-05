@@ -7,7 +7,6 @@ import com.issuemarket.entities.Member;
 import com.issuemarket.repositories.MemberRepository;
 import com.issuemarket.service.admin.member.MemberListService;
 import com.issuemarket.service.front.member.MemberInfoService;
-import com.issuemarket.service.front.member.MemberSaveService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import java.util.Arrays;
 
 @Controller("adminMemberController")
 @RequestMapping("/admin/member")
@@ -36,6 +35,9 @@ public class MemberController {
         Page<Member> members = memberListService.gets(search);
         model.addAttribute("items", members.getContent());
 
+        String[] roles = Arrays.stream(Role.values()).map(r->r.toString()).toArray(String[]::new);
+        model.addAttribute("roles", roles);
+
         return "admin/member/index";
     }
 
@@ -49,13 +51,10 @@ public class MemberController {
         System.out.println(member);
         memberRepository.saveAndFlush(member);
 
-
-
         return "redirect:/admin/member";
     }
 
-
-
+    
     private void commonProcess(Model model, String title) {
         model.addAttribute("pageTitle", title);
         model.addAttribute("title", title);
