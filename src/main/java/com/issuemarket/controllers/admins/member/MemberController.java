@@ -53,7 +53,6 @@ public class MemberController {
 
         return "redirect:/admin/member";
     }
-
     
     private void commonProcess(Model model, String title) {
         model.addAttribute("pageTitle", title);
