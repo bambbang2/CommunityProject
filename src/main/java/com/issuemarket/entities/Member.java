@@ -1,11 +1,10 @@
 package com.issuemarket.entities;
 
 import com.issuemarket.commons.constants.Role;
+import com.issuemarket.dto.MemberInfoRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 @Data @Builder
@@ -38,4 +37,15 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     private Role roles = Role.USER;  // 권한 ( 기본 - 회원 )
+
+    public void updateMember(MemberInfoRequest memberInfoRequest, PasswordEncoder passwordEncoder){
+        if(memberInfoRequest.getUserNewPw() != null){
+            String encodedPassword = memberInfoRequest.getUserNewPw();
+            this.userPw = passwordEncoder.encode(memberInfoRequest.getUserNewPw());
+        }
+        this.userNm = memberInfoRequest.getUserNm();
+        this.userNick = memberInfoRequest.getUserNick();
+        this.mobile = memberInfoRequest.getMobile();
+    }
+
 }
