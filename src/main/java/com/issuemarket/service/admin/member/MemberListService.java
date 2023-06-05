@@ -1,11 +1,8 @@
 package com.issuemarket.service.admin.member;
 
-import com.issuemarket.dto.BoardSearch;
 import com.issuemarket.dto.MemberInfo;
 import com.issuemarket.dto.MemberSearch;
-import com.issuemarket.entities.Board;
 import com.issuemarket.entities.Member;
-import com.issuemarket.entities.QBoard;
 import com.issuemarket.entities.QMember;
 import com.issuemarket.exception.MemberNotFoundException;
 import com.issuemarket.repositories.MemberRepository;
@@ -19,7 +16,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Service("adminMemberListService")
 @RequiredArgsConstructor
@@ -50,11 +46,14 @@ public class MemberListService {
 
                 if (sopt.equals("all")) {
                     builder.and(member.userId.contains(skey))
-                            .or(member.userNm.contains(skey));
+                            .or(member.userNm.contains(skey))
+                            .or(member.userNick.contains(skey));
                 } else if (sopt.equals("userId")) {
                     builder.and(member.userId.contains(skey));
                 } else if (sopt.equals("userNm")) {
                     builder.and(member.userNm.contains(skey));
+                } else if (sopt.equals("userNick")) {
+                    builder.and(member.userNick.contains(skey));
                 }
             }
 
@@ -82,20 +81,5 @@ public class MemberListService {
         System.out.println("memberInfo : " + memberInfo);
 
         return memberInfo;
-    }
-
-    private MemberInfo toConvert(Member member) {
-
-        return MemberInfo.builder()
-                .userNo(member.getUserNo())
-                .userId(member.getUserId())
-                .userPw(member.getUserPw())
-                .userNm(member.getUserNm())
-                .userNick(member.getUserNick())
-                .mobile(member.getMobile())
-                .roles(member.getRoles())
-                .createdAt(member.getCreatedAt())
-                .modifiedAt(member.getModifiedAt())
-                .build();
     }
 }

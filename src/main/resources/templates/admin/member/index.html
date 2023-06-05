@@ -23,8 +23,9 @@
                             <option value="all">통합검색</option>
                             <option value="userId">아이디 검색</option>
                             <option value="userNm">회원명 검색</option>
+                            <option value="userNick">닉네임 검색</option>
                         </select>
-                        <input type="text" name="skey" th:field="*{skey}" placeholder="검색어 입력ㅋ_ㅋ" style="margin-left: 16px; width: 70%; height: 35px;">
+                        <input type="text" name="skey" th:field="*{skey}" placeholder="검색어를 입력해주세요" style="margin-left: 16px; width: 70%; height: 35px;">
                     </div>
                 </td>
             </tr>
@@ -38,7 +39,7 @@
 
     <h2>회원 목록</h2>
 
-    <form method="post" th:action="@{/admin/member}" name="frmMemList" target="ifrmProcess">
+    <form method="post" th:action="@{/admin/member}" name="frmMemList" autocomplete="off" target="ifrmProcess">
         <input type="hidden" name="_method" value="patch">
         <table class="table-rows">
             <thead>

@@ -6,7 +6,6 @@ import com.issuemarket.dto.MemberSearch;
 import com.issuemarket.entities.Member;
 import com.issuemarket.repositories.MemberRepository;
 import com.issuemarket.service.admin.member.MemberListService;
-import com.issuemarket.service.front.member.MemberInfoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -24,7 +23,6 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberInfoService memberInfoService;
     private final MemberListService memberListService;
     private final MemberRepository memberRepository;
 
