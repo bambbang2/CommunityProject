@@ -5,8 +5,42 @@
 <section layout:fragment="content">
     <h1 th:text="${title}"></h1>
 
+    <h2>회원 검색</h2>
+    <form method="get" name="frmSearch" th:action="@{/admin/member}" autocomplete="off" th:object="${memberSearch}">
+        <table class="table-cols">
+            <tr>
+                <th>가입 날짜로 검색</th>
+                <td>
+                    <input type="date" name="sDate" th:field="*{sDate}" style="width: 20%"> ~
+                    <input type="date" name="eDate" th:field="*{eDate}" style="width: 20%">
+                </td>
+            </tr>
+            <tr>
+                <th>검색어</th>
+                <td>
+                    <div class="input_grp">
+                        <select name="sopt" th:field="*{sopt}">
+                            <option value="all">통합검색</option>
+                            <option value="userId">아이디 검색</option>
+                            <option value="userNm">회원명 검색</option>
+                        </select>
+                        <input type="text" name="skey" th:field="*{skey}" placeholder="검색어 입력ㅋ_ㅋ" style="margin-left: 16px; width: 70%; height: 35px;">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="search_btn">
+            <button type="submit">조회하기</button>
+        </div>
+
+    </form>
+
+    <h2>회원 목록</h2>
+
     <form method="post" th:action="@{/admin/member}" name="frmMemList" target="ifrmProcess">
-        <table class="table-cols" th:each="member : ${members}" th:object="${member}">
+        <input type="hidden" name="_method" value="patch">
+        <table class="table-cols">
             <thead>
                 <tr>
                     <th>
@@ -22,21 +56,29 @@
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody th:each="item : ${items}" th:object="${item}">
                 <tr>
                     <td>
-                        <input type="checkbox" th:value="*{userNo}" th:id="*{userNo}">
+                        <input type="checkbox" name="userNo" th:value="*{userNo}" th:id="*{userNo}">
                         <label th:for="*{userNo}"></label>
                     </td>
                     <td th:text="*{userNo}"></td>
                     <td>
-                        <select>
-                            <option th:each="role : ${T(com.issuemarket.commons.constants.Role).USER}"
-                                    th:value="${role}" th:text="${role}"></option>
 
-                            <option th:each="role : ${T(com.issuemarket.commons.constants.Role).ADMIN}"
-                                    th:value="${role}" th:text="${role}"></option>
-                        </select>
+
+<!--                        <select th:field="${roles}">-->
+<!--                            <option th:each="role : ${T(com.issuemarket.commons.constants.Role).values()}"-->
+<!--                                    th:if="${role == T(com.issuemarket.commons.constants.Role.USER).ENUM_1 or role == T(com.issuemarket.commons.constants.Role.ADMIN).ENUM_2}"-->
+<!--                                    th:value="${role}" th:text="${role}"-->
+<!--                                    th:selected="${role == roles}" ></option>-->
+<!--                        </select>-->
+
+<!--                        <select th:field="*{roles}">-->
+<!--                            <option th:each="role : ${roles}"-->
+<!--                                    th:value="${role}" th:text="${role}"-->
+<!--                                    th:selected="${role}" ></option>-->
+
+<!--                        </select>-->
                     </td>
                     <td th:text="*{userId}"></td>
                     <td th:text="*{userNm}"></td>

@@ -10,6 +10,7 @@ import com.issuemarket.service.front.member.MemberInfoService;
 import com.issuemarket.service.front.member.MemberSaveService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,14 +28,13 @@ public class MemberController {
     private final MemberInfoService memberInfoService;
     private final MemberListService memberListService;
     private final MemberRepository memberRepository;
-    private final MemberSaveService saveService;
 
     @GetMapping
-    public String gets(MemberSearch search, Model model) {
+    public String gets(@ModelAttribute MemberSearch search, Model model) {
         commonProcess(model, "회원관리");
 
-        List<MemberInfo> members = memberListService.gets(search);
-        model.addAttribute("members", members);
+        Page<Member> members = memberListService.gets(search);
+        model.addAttribute("items", members.getContent());
 
         return "admin/member/index";
     }
@@ -42,10 +42,14 @@ public class MemberController {
     @PostMapping
     public String getsPs(@ModelAttribute MemberInfo memberInfo, Model model) {
         commonProcess(model, "회원 관리");
+        model.addAttribute("roles", Role.values());
+        memberInfo = memberListService.get(memberInfo.getUserNo());
+
+        Member member = new ModelMapper().map(memberInfo, Member.class);
+        System.out.println(member);
+        memberRepository.saveAndFlush(member);
 
 
-
-        System.out.println(memberInfo);
 
         return "redirect:/admin/member";
     }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BoardConfigListService {
 
+
     private final BoardRepository boardRepository;
 
     public Page<Board> gets(BoardSearch boardSearch){
