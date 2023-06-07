@@ -66,6 +66,9 @@ public class Board extends BaseMemberEntity {
 
     private boolean useComment; // 댓글
 
+    @Transient
+    private boolean isGuest;
+
     // 게시판 카테고리
     public String[] getCategories() {
         if (category == null) {

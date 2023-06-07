@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <div th:fragment="navbar" class="head_bar">
-        <nav class="menu_bar">
+        <nav class="menu_bar" >
             <ul class="menu_bar_list">
-                <li>
-                    <a href="#">Board1</a>
+                <li th:each="board : ${boards}" th:object="${board}">
+                    <a href="#" th:text="*{bName}">Board1</a>
                     <ul class="sub_list">
-                        <li>
-                            <a href="#">Board1_1</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">Board2</a>
-                    <ul class="sub_list">
-                        <li>
-                            <a href="#">Board1_1</a>
+                        <li th:each="category : ${board.getCategories()}">
+                            <a href="#" th:text="${category}">Board1_1</a>
                         </li>
                     </ul>
                 </li>
