@@ -18,7 +18,13 @@ public class MemberSaveService {
 
     public void save(MemberJoin memberJoin) {
         Member member = new ModelMapper().map(memberJoin,Member.class);
+
         member.setUserPw(passwordEncoder.encode(memberJoin.getUserPw()));
+
+        String nick = memberJoin.getUserNick();
+        if (nick == null || nick.isEmpty()) {
+            member.setUserNick(memberJoin.getUserNm());
+        }
 
         repository.saveAndFlush(member);
     }

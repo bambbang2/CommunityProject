@@ -1,6 +1,5 @@
 package com.issuemarket.service.admin.member;
 
-import com.issuemarket.dto.MemberInfo;
 import com.issuemarket.dto.MemberSearch;
 import com.issuemarket.entities.Member;
 import com.issuemarket.entities.QMember;
@@ -8,7 +7,6 @@ import com.issuemarket.exception.MemberNotFoundException;
 import com.issuemarket.repositories.MemberRepository;
 import com.querydsl.core.BooleanBuilder;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -73,13 +71,9 @@ public class MemberListService {
         return members;
     }
 
-    public MemberInfo get(Long userNo) {
+    public Member get(Long userNo) {
         Member member = repository.findById(userNo).orElseThrow(MemberNotFoundException::new);
 
-        MemberInfo memberInfo = new ModelMapper().map(member, MemberInfo.class);
-
-        System.out.println("memberInfo : " + memberInfo);
-
-        return memberInfo;
+        return member;
     }
 }

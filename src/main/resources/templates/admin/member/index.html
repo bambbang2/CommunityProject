@@ -40,7 +40,7 @@
     <h2>회원 목록</h2>
 
     <form method="post" th:action="@{/admin/member}" name="frmMemList" autocomplete="off" target="ifrmProcess">
-        <input type="hidden" name="_method" value="patch">
+<!--        <input type="hidden" name="_method" value="patch">-->
         <table class="table-rows">
             <thead>
                 <tr>
@@ -67,10 +67,12 @@
                     <td th:text="*{userNo}"></td>
                     <td>
                         <select th:name="*{'role_' + userNo}">
-                            <option  th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
+                            <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
                         </select>
                     </td>
-                    <td th:text="*{userId}"></td>
+                    <td>
+                        <a th:text="*{userId}" th:href="@{/admin/member/update/{userNo}(userNo=*{userNo})}"></a>
+                    </td>
                     <td th:text="*{userNm}"></td>
                     <td th:text="*{userNick}"></td>
                     <td th:text="*{mobile}"></td>
