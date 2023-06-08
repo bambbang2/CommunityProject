@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 public class Configs {
 
     @Id
-    @Column(length = 45)
+    @Column(length = 45, name = "code_")
     private String code;
     @Lob
-    @Column(length = 100)
+    @Column(length = 100, name = "value_")
     private String value;
 }

@@ -1,5 +1,7 @@
 package com.issuemarket.tests;
 
+import com.issuemarket.commons.configs.ConfigSaveService;
+import com.issuemarket.controllers.admins.ConfigForm;
 import com.issuemarket.dto.MemberJoin;
 import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Board;
@@ -10,6 +12,7 @@ import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
 import com.issuemarket.service.admin.board.config.BoardConfigSaveService;
 import com.issuemarket.service.front.member.MemberSaveService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +22,18 @@ import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.ResourceBundle;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,15 +53,23 @@ public class BoardSaveTests {
 
     @Autowired
     private MemberSaveService memberSaveService;
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ConfigSaveService configSaveService;
     private Board board;
     private MemberJoin memberJoin;
 
     @BeforeEach
     @Transactional
     void init() {
+        // 사이트 설정 등록
+        configSaveService.save("siteConfig", new ConfigForm());
+
         // 게시판 추가
         BoardForm boardForm = new BoardForm();
-        boardForm.setBId("freetalk");
+        boardForm.setBId("freetalk10");
         boardForm.setBName("자유게시판");
         boardConfigSaveService.save(boardForm);
 
@@ -212,5 +230,33 @@ public class BoardSaveTests {
         commonRequiredFieldsTest();
     }
 
+
+    @Test
+    @DisplayName("비회원 게시글 작성 유효성 검사")
+    void requiredFieldsGuestControllerTest() throws Exception {
+        PostForm postForm = getGuestPostForm();
+        String body = mockMvc.perform(post("/board/save")
+                .param("bId", postForm.getBId())
+                .param("gid", postForm.getGid())
+                        .with(csrf().asHeader()))
+                .andDo(print())
+                .andReturn()
+                .getResponse()
+                .getContentAsString(Charset.defaultCharset());
+
+        ResourceBundle bundle = ResourceBundle.getBundle("messages.validations");
+        String[] messages = {
+                bundle.getString("NotBlank.postForm.poster"),
+                bundle.getString("NotBlank.postForm.subject"),
+                bundle.getString("NotBlank.postForm.content"),
+                bundle.getString("NotBlank.postForm.guestPw"),
+                bundle.getString("Size.postForm.guestPw")
+        };
+
+        for (String message : messages)  {
+            assertTrue(body.contains(message));
+        }
+
+    }
 
 }

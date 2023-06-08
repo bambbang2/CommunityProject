@@ -9,6 +9,7 @@ import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
 import com.issuemarket.validators.post.PostValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,7 @@ public class PostSaveService {
     private final BoardConfigInfoService boardConfigInfoService;
     private final PostRepository postRepository;
     private final HttpServletRequest request;
+    private final PasswordEncoder passwordEncoder;
 
     public void save(PostForm postForm) {
         validator.check(postForm);
@@ -47,7 +49,7 @@ public class PostSaveService {
 
             if (memberUtil.isLogin()) post.setMember(memberUtil.getEntity());
             else {
-                post.setGuestPw(postForm.getGuestPw());
+                post.setGuestPw(passwordEncoder.encode(postForm.getGuestPw()));
             }
 
         } else { // update

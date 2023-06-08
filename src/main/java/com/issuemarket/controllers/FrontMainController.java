@@ -20,8 +20,8 @@ public class FrontMainController {
     @GetMapping
     public String main(Model model) {
 
-        List<Board> boards = boardRepository.findAll();
-        model.addAttribute("boards", boards);
+//        List<Board> boards = boardRepository.findAll();
+//        model.addAttribute("boards", boards);
 
         return "front/index";
     }
