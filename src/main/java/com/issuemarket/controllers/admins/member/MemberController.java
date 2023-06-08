@@ -48,10 +48,6 @@ public class MemberController {
 
         member.setRoles(Role.valueOf(updateRole));
 
-
-
-//        Member member = new ModelMapper().map(memberInfo, Member.class);
-
         memberRepository.saveAndFlush(member);
         System.out.println("After member " + member);
         return "redirect:/admin/member";
@@ -65,7 +61,6 @@ public class MemberController {
         Member member = memberRepository.findById(userNo).orElseThrow(MemberNotFoundException::new);
 
         model.addAttribute("member", member);
-        
 
         return "admin/member/update";
     }

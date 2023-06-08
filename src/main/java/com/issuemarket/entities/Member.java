@@ -28,7 +28,7 @@ public class Member extends BaseEntity {
     @Column(length = 40, unique = true)
     private String userNick;  // 닉네임
 
-    @Column(length = 11)
+    @Column(length = 11, nullable = false)
     private String mobile;  // 핸드폰
 
     @Lob

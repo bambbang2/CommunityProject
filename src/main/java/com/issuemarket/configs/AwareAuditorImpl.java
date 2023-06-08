@@ -1,16 +1,23 @@
 package com.issuemarket.configs;
 
+import com.issuemarket.commons.MemberUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-/** 나중에 Member 엔티티, info 구현 후 수정 필요!!!!! */
 @Component
+@RequiredArgsConstructor
 public class AwareAuditorImpl implements AuditorAware<String> {
+
+    private final MemberUtil memberUtil;
 
     @Override
     public Optional<String> getCurrentAuditor() {
-        return Optional.empty();
+
+        String userId = memberUtil.isLogin() ? memberUtil.getMember().getUserId() : null;
+
+        return Optional.ofNullable(userId);
     }
 }
