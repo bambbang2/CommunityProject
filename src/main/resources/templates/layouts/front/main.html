@@ -16,6 +16,7 @@
               th:href="@{/css/front/{cssFile}.css?v={v}(cssFile=${file}, v=${@siteConf.get('cssJsVersion')})}">
         <th:block layout:fragment="addCss"></th:block>
 
+        <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script th:src="@{/js/front/common.js?v={v}(v=${@siteConf.get('cssJsVersion')})}"></script>
         <script th:each="jsFile : ${addScript}"
                 th:src="@{/js/front/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${@siteConf.get('cssJsVersion')})}"></script>

@@ -1,8 +1,10 @@
 package com.issuemarket.controllers.members;
 
 import com.issuemarket.dto.MemberJoin;
+import com.issuemarket.dto.social.ProfileResult;
 import com.issuemarket.service.front.member.MemberSaveService;
 import com.issuemarket.validators.member.JoinValidator;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -19,9 +21,16 @@ public class JoinController {
 
     private final JoinValidator joinValidator;
 
+    private final HttpSession session;
+
     @GetMapping("/join")
     public String join(@ModelAttribute MemberJoin memberJoin, Model model) {
         commonProcess(model);
+
+        ProfileResult profileResult = (ProfileResult) session.getAttribute("kakao");
+        if (profileResult != null) {
+            memberJoin.setUserNm(profileResult.getProperties().getNickname());
+        }
 
         return "member/join";
     }

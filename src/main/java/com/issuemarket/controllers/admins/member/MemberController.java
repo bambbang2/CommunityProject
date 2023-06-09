@@ -1,18 +1,21 @@
 package com.issuemarket.controllers.admins.member;
 
 import com.issuemarket.commons.constants.Role;
+import com.issuemarket.dto.MemberInfoRequest;
 import com.issuemarket.dto.MemberSearch;
 import com.issuemarket.entities.Member;
 import com.issuemarket.exception.CommonException;
 import com.issuemarket.exception.MemberNotFoundException;
 import com.issuemarket.repositories.MemberRepository;
 import com.issuemarket.service.admin.member.MemberListService;
+import com.issuemarket.service.front.member.MemberSaveService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -24,6 +27,7 @@ public class MemberController {
 
     private final MemberListService memberListService;
     private final MemberRepository memberRepository;
+    private final MemberSaveService saveService;
     private final HttpServletResponse response;
 
     @GetMapping
@@ -54,17 +58,26 @@ public class MemberController {
     }
 
 
-    @GetMapping("/update/{userNo}")
-    public String update(@PathVariable Long userNo, Model model) {
+    @GetMapping("/view/{userNo}")
+    public String view(@PathVariable Long userNo, Model model) {
         commonProcess(model, "회원 상세 조회");
         
         Member member = memberRepository.findById(userNo).orElseThrow(MemberNotFoundException::new);
 
         model.addAttribute("member", member);
 
-        return "admin/member/update";
+        return "admin/member/view";
     }
 
+    @PostMapping("/save")
+    public String save(MemberInfoRequest memberInfoRequest, Errors errors) {
+
+//        if ()
+//
+//        saveService.save(memberJoin);
+
+        return "redirect:/member/view";
+    }
 
     private void commonProcess(Model model, String title) {
         model.addAttribute("pageTitle", title);

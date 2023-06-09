@@ -37,9 +37,14 @@
                 <div>
                     <input type="checkbox" name="savedId" value="true" id="savedId">
                     <label for="savedId" th:text="#{savedId}" th:field="*{savedId}"></label>
+
+                    <a th:href="${@socialLogin.getAuthUrl()}">카카오 로그인</a>
                 </div>
+
                 <button type="submit" th:text="#{member.login}" class="sbtn carrot member"></button>
             </form>
+
+
         </div>
     </main>
 </html>

@@ -3,8 +3,14 @@ package com.issuemarket.entities;
 import com.issuemarket.commons.constants.Role;
 import com.issuemarket.dto.MemberInfoRequest;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data @Builder
@@ -19,7 +25,7 @@ public class Member extends BaseEntity {
     @Column(length = 40, unique = true, nullable = false)
     private String userId;  // 아이디
 
-    @Column(length = 60, nullable = false)
+    @Column(length = 60)
     private String userPw;  // 비밀번호
 
     @Column(length = 40, nullable = false)
@@ -37,6 +43,27 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
     private Role roles = Role.USER;  // 권한 ( 기본 - 회원 )
+
+    @OneToMany(mappedBy = "member")
+    private List<Post> postList = new ArrayList<>();
+
+    /** 주소 관련 */
+    @Column(length = 10)
+    private String zipcode;
+
+    @Column(length = 100)
+    private String address;
+
+    @Column(length = 100)
+    private String addressSub;
+
+    /** 카카오 로그인 */
+    @Column(length = 10)
+    private String socialChannel;
+
+    @Column(length = 40)
+    private String socialId;
+
 
     public void updateMember(MemberInfoRequest memberInfoRequest, PasswordEncoder passwordEncoder){
         if(memberInfoRequest.getUserNewPw() != null){

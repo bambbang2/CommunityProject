@@ -18,11 +18,9 @@ public class MemberJoin {
     @Size(min = 5, max = 20)
     private String userId;
 
-    @NotBlank
     @Size(min = 8)
     private String userPw;
 
-    @NotBlank
     private String userPwRe;
 
     @NotBlank
@@ -32,6 +30,13 @@ public class MemberJoin {
 
     @NotBlank
     private String mobile;
+
+    /** 주소 관련 */
+    private String zipcode;
+
+    private String address;
+
+    private String addressSub;
 
 //    @AssertTrue
     private boolean[] agrees;

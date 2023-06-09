@@ -4,7 +4,7 @@
       layout:decorate="~{/layouts/admin/main}">
     <section layout:fragment="content">
         <h1 th:text="${title}"></h1>
-        <form method="post" name="frmMemberDetail" autocomplete="off" th:object="${member}">
+        <form method="post" name="frmMemberDetail" th:action="@{/admin/member/save}" autocomplete="off" th:object="${member}">
 <!--            <th:block th:replace="~{commons/execute_script::script}"-->
             <h1 th:field="*{userId}" th:text="*{userId}"></h1>
 
