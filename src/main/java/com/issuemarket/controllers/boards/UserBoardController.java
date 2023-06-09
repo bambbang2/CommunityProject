@@ -6,6 +6,7 @@ import com.issuemarket.entities.Board;
 import com.issuemarket.exception.CommonException;
 import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
 import com.issuemarket.service.admin.post.PostSaveService;
+import com.issuemarket.validators.post.PostFormValidator;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class UserBoardController {
     private final PostSaveService postSaveService;
     private final HttpServletResponse response;
     private final MemberUtil memberUtil;
+    private final PostFormValidator postFormValidator;
 
     private Board board;
 
@@ -66,15 +68,17 @@ public class UserBoardController {
         String mode = id == null ? "write" : "update";
         commonProcess(postForm.getBId(), mode, model);
 
+        postFormValidator.validate(postForm, errors);
+
         if (errors.hasErrors()) {
             return "board/" + mode;
         }
         postSaveService.save(postForm);
 
-
+        // 카테고리 부분이랑 수정 필요
         String location = board.getLocationAfterWriting();
         String url = "redirect:/board/";
-        url += location.equals("view") ? "view/" + postForm.getId() : "list/" + postForm.getId();
+        url += location.equals("view") ? "view/" + postForm.getId() : "list/" + postForm.getBId();
 
         return url;
     }

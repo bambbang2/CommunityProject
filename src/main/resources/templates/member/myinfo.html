@@ -2,14 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
+<head>
+    <link th:href="@{css/myInfo/style.css}" rel="stylesheet" />
+</head>
 <main layout:fragment="content">
 
-<!--         <span th:text="${member.userNo}"></span>
-    <span th:text="${member.userId}"></span>
-    <span th:text="${member.userPw}"></span>
-    <span th:text="${member.userNm}"></span>
-    <span th:text="${member.userNick}"></span>
-    <span th:text="${member.mobile}"></span>-->
 
     <form method="post" th:action="@{/member/myinfo}" th:object="${member}">
         <th:block th:if="${userNo}">
@@ -17,51 +14,71 @@
         </th:block>
 
         <div>
-            <div style="border: 1px solid red;">
-                <span> 아이디</span>
-                <input type="text"  th:field="*{userId}">
-            </div>
-            <div style="border: 1px solid blue;">
-                <span>비밀번호</span>
-                <input type="password"  th:field="*{userPw}">
-            </div>
-            <div style="border: 1px solid blue;">
-                <span>새 비밀번호</span>
-                <input type="password"  th:field="*{userNewPw}">
-            </div>
-            <div style="border: 1px solid blue;">
-                <span>새 비밀번호 확인</span>
-                <input type="password"  th:field="*{userNewPwRe}">
-            </div>
-            <div style="border: 1px solid green;">
-                <span> 이름</span>
-                <input type="text"  th:field="*{userNm}">
-            </div>
 
-            <div style="border: 1px solid green;">
-                <span>닉네임</span>
-                <input type="text"  th:field="*{userNick}">
-            </div>
-            <div style="border: 1px solid green;">
-                <span>핸드폰</span>
-                <input type="text"  th:field="*{mobile}">
+            <div style="border: 1px solid red;display:flex;">
+                <div style="border: 1px solid blue; width:10%">
+                    <div style="border: 1px solid red;">
+                        <a href="#"><span>내 정보 수정</span></a>
+                    </div>
+                    <div style="border: 1px solid blue;">
+                        <a href="#"><span>내가 쓴 글 확인하기</span></a>
+
+                    </div>
+                </div>
+                <div style="border: 1px solid green;width:90%">
+                    <div style="border: 1px solid red;">
+                        <span> 아이디</span>
+                        <input type="text"  th:field="*{userId}">
+                    </div>
+                    <div style="border: 1px solid blue;">
+                        <span>비밀번호</span>
+                        <input type="password"  th:field="*{userPw}">
+                    </div>
+                    <div style="border: 1px solid blue;">
+                        <span>새 비밀번호</span>
+                        <input type="password"  th:field="*{userNewPw}">
+                    </div>
+                    <div style="border: 1px solid blue;">
+                        <span>새 비밀번호 확인</span>
+                        <input type="password"  th:field="*{userNewPwRe}">
+                    </div>
+                    <div style="border: 1px solid green;">
+                        <span> 이름</span>
+                        <input type="text"  th:field="*{userNm}">
+                    </div>
+
+                    <div style="border: 1px solid green;">
+                        <span>닉네임</span>
+                        <input type="text"  th:field="*{userNick}">
+                    </div>
+                    <div style="border: 1px solid green;">
+                        <span>핸드폰</span>
+                        <input type="text"  th:field="*{mobile}">
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
+
+
         <button type="submit">수정하기</button>
     </form>
 
-  <!--  <form method="post" th:action="@{/member/myinfo}" th:object="${member}">
+    <!--  <form method="post" th:action="@{/member/myinfo}" th:object="${member}">
 
-        <dl>
-            <dt th:text="#{userId}"></dt>
-            <dd>
-                <input type="text" name="userId" th:field="*{userId}">
-                <div class="errors" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
-            </dd>
-        </dl>
+          <dl>
+              <dt th:text="#{userId}"></dt>
+              <dd>
+                  <input type="text" name="userId" th:field="*{userId}">
+                  <div class="errors" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
+              </dd>
+          </dl>
 
 
-    -->
+      -->
 
     <script>
         const errorMessage = "[[${errorMessage}]]";

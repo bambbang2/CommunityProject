@@ -4,10 +4,10 @@
         <nav class="menu_bar" >
             <ul class="menu_bar_list">
                 <li th:each="board : ${boards}" th:object="${board}">
-                    <a href="#" th:text="*{bName}">Board1</a>
+                    <a th:href="@{/board/list/{bid}(bid=${board.getBId()})}" th:text="*{bName}">Board1</a>
                     <ul class="sub_list">
                         <li th:each="category : ${board.getCategories()}">
-                            <a href="#" th:text="${category}">Board1_1</a>
+                            <a th:href="@{/board/list/{bid}?category={cate}(bid=${board.getBId()}, cate=${category})}" th:text="${category}">Board1_1</a>
                         </li>
                     </ul>
                 </li>
