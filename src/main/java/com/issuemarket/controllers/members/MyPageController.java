@@ -38,6 +38,8 @@ public class MyPageController {
         System.out.println(request);
         model.addAttribute("member", request);
 
+
+
         return "/member/myinfo";
     }
 
@@ -54,6 +56,12 @@ public class MyPageController {
         }catch(Exception e){
             model.addAttribute("errorMessage", "서버 내 문제입니다. 관리자에게 문의해주세요");
         }
+
+        return "/member/myinfo";
+    }
+
+    @GetMapping("/mywrite")
+    public String myWrite(){
 
         return "/member/myinfo";
     }
