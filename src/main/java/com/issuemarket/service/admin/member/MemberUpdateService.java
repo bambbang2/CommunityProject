@@ -1,31 +1,28 @@
 package com.issuemarket.service.admin.member;
 
+import com.issuemarket.dto.MemberJoin;
 import com.issuemarket.entities.Member;
 import com.issuemarket.exception.MemberNotFoundException;
 import com.issuemarket.repositories.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 @RequiredArgsConstructor
-public class MemberDeleteService {
+public class MemberUpdateService {
 
     private final MemberRepository repository;
 
-    public void delete(Long userNo) {
-        delete(userNo, false);
-    }
-
-    public void delete(Long userNo, boolean isComplete) {
+    public void update(Long userNo, MemberJoin memberJoin) {
         Member member = repository.findById(userNo).orElseThrow(MemberNotFoundException::new);
 
-        if (isComplete) {
-            repository.delete(member);
+        String nick = memberJoin.getUserNick();
+
+        if (nick == null || nick.isBlank()) {
+            member.setUserNick(member.getUserNick());
         } else {
-            member.setDeletedAt(LocalDateTime.now());
+            member.setUserNick(nick);
         }
-        repository.flush();
+        repository.saveAndFlush(member);
     }
 }

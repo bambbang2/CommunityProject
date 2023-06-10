@@ -86,6 +86,7 @@ aside .main_menu .subs li.on a { background: #FF7E36; color: #fff; }
 
 .search_btn { text-align: center; margin: 20px 0 35px; }
 .search_btn button { text-align: center; height: 45px; line-height: 45px; background: #fff; color: #FF7E36; padding: 0 30px; border: 1px solid #FF7E36; font-size: 16px; cursor:pointer; border-bottom-left-radius: 20px; border-top-right-radius: 20px; }
+.search_btn button > a { color: #FF7E36; }
 .search_btn button:hover { font-weight: bold; text-decoration: underline; }
 
 /** 기본 메세지 상자 스타일 */
@@ -100,7 +101,7 @@ h2 { font-size: 18px; font-weight: bold; margin: 0; margin: 25px 0 10px; line-he
 .table-cols th { background: #f8f8f8; width: 160px; padding: 10px 20px; text-align: left; }
 .table-cols td { background: #fff; padding: 10px 15px; }
 .table-cols th,
-.table-cols td { border-bottom: 1px solid #d5d5d5; }
+.table-cols td { border-bottom: 1px solid #d5d5d5; height: 60px; }
 
 .table-rows { width: 100%; border-spacing: 0; padding: 0; }
 .table-rows th { background: #7a7c89; color: #fff; border-top: 1px solid #d5d5d5; padding: 12px 10px; }

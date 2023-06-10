@@ -14,7 +14,82 @@ window.addEventListener("DOMContentLoaded", function() {
         });
     }
     /** 전체 선택 토글 처리 E */
+
+
+    /** 회원 탈퇴 버튼 S */
+//    document.getElementById('deleteBtn').addEventListener("click", function() {
+//
+//        var userNo = (this).data('userNo');
+//        console.log(userNo);
+//        var isConfirmed = confirm("회원 탈퇴 처리하시겠습니까?");
+//
+//        if (isConfirmed) {
+//
+//            $.ajax({
+//                url:'/api/member/delete' + userNo,
+//                type: 'DELETE',
+//                success:function(result){
+//                alert('삭제 완료!');
+//                },
+//                error:function(xhr, status, error) {
+//                alert('삭제에 실패하였습니다.');
+//                }
+//
+//            })
+//        }
+//    });
+//    $(document).ready(function() {
+//        $('#deleteBtn').click(function() {
+//            var userNo = $(this).data('userNo');
+//
+//            if (confirm('정말 탈퇴하시겠습니까?')) {
+//                $.ajax({
+//                    url:'/api/member/delete' + userNo,
+//                    type:'DELETE',
+//                    success:function(result) {
+//                        alert('탈퇴 완료');
+//                        location.href='/admin/member';
+//                    },
+//                    error:function(xhr, status, error) {
+//                        console.log(error);
+//                        alert('탈퇴 실패');
+//                        history.back();
+//                    }
+//
+//                })
+//            }
+//
+//        })
+//    })
+
+
 });
+
+
+//$(document).ready(function() {
+//        $('#deleteBtn').click(function() {
+//            var userNo = $(this).data('userNo');
+//
+//            if (confirm('정말 탈퇴하시겠습니까?')) {
+//                $.ajax({
+//                    url:'/api/member/delete' + userNo,
+//                    type:'DELETE',
+//                    success:function(result) {
+//                        alert('탈퇴 완료');
+//                        location.href='/admin/member';
+//                    },
+//                    error:function(xhr, status, error) {
+//                        console.log(error);
+//                        alert('탈퇴 실패');
+//                        history.back();
+//                    }
+//
+//                });
+//            }
+//
+//        });
+//    });
+
 
 /**
 window.addEventListener("DOMContentLoaded", function() {

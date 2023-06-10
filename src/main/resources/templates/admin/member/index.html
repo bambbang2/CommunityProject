@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/admin/main}">
 <section layout:fragment="content">
-    <h1 th:text="${title}"></h1>
+<!--    <h1 th:text="${title}"></h1>-->
 
     <h2>회원 검색</h2>
     <form method="get" name="frmSearch" th:action="@{/admin/member}" autocomplete="off" th:object="${memberSearch}">
@@ -41,7 +41,6 @@
     <h2>회원 목록</h2>
 
     <form method="post" th:action="@{/admin/member}" name="frmMemList" autocomplete="off" target="ifrmProcess">
-<!--        <input type="hidden" name="_method" value="patch">-->
         <table class="table-rows">
             <thead>
                 <tr>
@@ -56,6 +55,7 @@
                     <th>닉네임</th>
                     <th>핸드폰 번호</th>
                     <th>가입 날짜</th>
+                    <th>탈퇴 날짜</th>
                 </tr>
             </thead>
 
@@ -78,6 +78,7 @@
                     <td th:text="*{userNick}"></td>
                     <td th:text="*{mobile}"></td>
                     <td th:text="*{#temporals.format(createdAt, 'yyyy.MM.dd')}"></td>
+                    <td th:text="*{#temporals.format(deletedAt, 'yyyy.MM.dd')}"></td>
                 </tr>
             </tbody>
         </table>

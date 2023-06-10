@@ -1,21 +1,21 @@
 package com.issuemarket.controllers.admins.member;
 
 import com.issuemarket.commons.constants.Role;
-import com.issuemarket.dto.MemberInfoRequest;
+import com.issuemarket.dto.MemberJoin;
 import com.issuemarket.dto.MemberSearch;
 import com.issuemarket.entities.Member;
 import com.issuemarket.exception.CommonException;
 import com.issuemarket.exception.MemberNotFoundException;
 import com.issuemarket.repositories.MemberRepository;
+import com.issuemarket.service.admin.member.MemberDeleteService;
 import com.issuemarket.service.admin.member.MemberListService;
-import com.issuemarket.service.front.member.MemberSaveService;
+import com.issuemarket.service.admin.member.MemberUpdateService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -25,16 +25,17 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberListService memberListService;
+    private final MemberListService listService;
     private final MemberRepository memberRepository;
-    private final MemberSaveService saveService;
+    private final MemberDeleteService deleteService;
     private final HttpServletResponse response;
+    private final MemberUpdateService updateService;
 
     @GetMapping
     public String list(@ModelAttribute MemberSearch search, Model model) {
         commonProcess(model, "회원관리");
 
-        Page<Member> members = memberListService.gets(search);
+        Page<Member> members = listService.gets(search);
         model.addAttribute("items", members.getContent());
 
         String[] roles = Arrays.stream(Role.values()).map(r->r.toString()).toArray(String[]::new);
@@ -48,7 +49,7 @@ public class MemberController {
         commonProcess(model, "회원 관리");
         System.out.println("Before member " + member);
         String updateRole = String.valueOf(member.getRoles());
-        member = memberListService.get(member.getUserNo());
+        member = listService.get(member.getUserNo());
 
         member.setRoles(Role.valueOf(updateRole));
 
@@ -69,20 +70,31 @@ public class MemberController {
         return "admin/member/view";
     }
 
-    @PostMapping("/save")
-    public String save(MemberInfoRequest memberInfoRequest, Errors errors) {
+    @PostMapping("/view/{userNo}")
+    public String viewPs(@PathVariable Long userNo, @ModelAttribute("member") MemberJoin memberJoin, Model model) {
+        commonProcess(model, "회원 상세 조회");
 
-//        if ()
-//
-//        saveService.save(memberJoin);
+        updateService.update(userNo, memberJoin);
 
-        return "redirect:/member/view";
+        return "redirect:/admin/member";
+    }
+
+
+
+    @GetMapping("/delete/{userNo}")
+    public String delete(@PathVariable Long userNo, Model model) {
+        Member member = listService.get(userNo);
+
+        deleteService.delete(member.getUserNo());
+
+        return "redirect:/admin/member";
     }
 
     private void commonProcess(Model model, String title) {
         model.addAttribute("pageTitle", title);
         model.addAttribute("title", title);
         model.addAttribute("menuCode", "member");
+
     }
 
     @ExceptionHandler(CommonException.class)

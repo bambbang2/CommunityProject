@@ -2,12 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/layouts/admin/main}">
-    <section layout:fragment="content">
-        <h1 th:text="${title}"></h1>
-        <form method="post" name="frmMemberDetail" th:action="@{/admin/member/save}" autocomplete="off" th:object="${member}">
-<!--            <th:block th:replace="~{commons/execute_script::script}"-->
-            <h1 th:field="*{userId}" th:text="*{userId}"></h1>
-
+    <section layout:fragment="content" th:object="${member}">
+        <h1>
+            [[${title}]]([[*{userId}]])
+        </h1>
+        <form method="post" name="frmMemberDetail" th:action="@{/admin/member/view/{userNo}(userNo=*{userNo})}" autocomplete="off">
             <table class="table-cols">
                 <tr>
                     <th>회원번호</th>
@@ -27,15 +26,13 @@
                 <tr>
                     <th>닉네임</th>
                     <td>
-                        <input type="text" th:value="*{userNick}">
+                        <input type="text" th:field="*{userNick}">
                     </td>
                 </tr>
 
                 <tr>
                     <th>핸드폰 번호</th>
-                    <td>
-                        <input type="text" th:value="*{mobile}">
-                    </td>
+                    <td th:text="*{mobile}"></td>
                 </tr>
 
                 <tr>
@@ -43,11 +40,18 @@
                     <td th:text="*{#temporals.format(createdAt, 'yyyy.MM.dd')}"></td>
                 </tr>
 
+                <tr>
+                    <th>탈퇴 날짜</th>
+                    <td th:text="*{#temporals.format(deletedAt, 'yyyy.MM.dd')}"></td>
+                </tr>
+
             </table>
 
             <div class="search_btn">
                 <button type="submit">수정하기</button>
-                <button type="button" th:onclick="script">회원 탈퇴</button>
+                <button>
+                    <a th:href="@{/admin/member/delete}" th:text="#{member.delete}" onclick="return confirm('정말 탈퇴 처리 하시겠습니까?');"></a>
+                </button>
             </div>
         </form>
     </section>
