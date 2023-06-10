@@ -7,7 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Entity @Data @Builder
 @AllArgsConstructor
@@ -68,6 +70,9 @@ public class Board extends BaseMemberEntity {
 
     @Transient
     private boolean isGuest;
+
+    @OneToMany(mappedBy = "board")
+    private List<Post> postList = new ArrayList<>();
 
     // 게시판 카테고리
     public String[] getCategories() {

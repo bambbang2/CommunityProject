@@ -1,11 +1,13 @@
 package com.issuemarket.tests;
 
+import com.issuemarket.commons.constants.Role;
 import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Board;
 import com.issuemarket.entities.BoardForm;
-import com.issuemarket.entities.Post;
+import com.issuemarket.exception.BoardNotAllowAccessException;
 import com.issuemarket.exception.PostNotExistException;
-import com.issuemarket.models.board.PostInfoService;
+import com.issuemarket.service.admin.post.PostInfoService;
+import com.issuemarket.repositories.BoardRepository;
 import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
 import com.issuemarket.service.admin.board.config.BoardConfigSaveService;
 import com.issuemarket.service.admin.post.PostSaveService;
@@ -39,16 +41,25 @@ public class BoardViewTest {
     private BoardConfigInfoService boardConfigInfoService;
     @Autowired
     private PostInfoService postInfoService;
+    @Autowired
+    private BoardRepository boardRepository;
+
+    private String bId = "freetalk";
+
+    private Board getBoard() {
+        board = boardConfigInfoService.get(bId, true);
+        return board;
+    }
 
     @BeforeEach
     void init() {
         // 게시판 추가
         BoardForm boardForm = new BoardForm();
-        boardForm.setBId("freetalk");
+        boardForm.setBId(bId);
         boardForm.setBName("자유게시판");
+        boardForm.setUse(true);
         boardConfigSaveService.save(boardForm);
-
-        board = boardConfigInfoService.get(boardForm.getBId(), true);
+        board = getBoard();
 
         // 테스트용 게시글 추가
         postForm = PostForm.builder()
@@ -84,4 +95,30 @@ public class BoardViewTest {
         });
     }
 
+
+    @Test
+    @DisplayName("게시판 사용 여부 use - false이면 접근 불가")
+    void accessAuthCheckTest1() {
+        assertThrows(BoardNotAllowAccessException.class, () -> {
+            Board board = getBoard();
+            board.setUse(false);
+            boardRepository.saveAndFlush(board);
+
+            postInfoService.get(id);
+        });
+    }
+
+
+    @Test
+    @DisplayName("회원 전용 글보기 권한일때 = 비회원 접속시 예외 발생")
+    void accessAuthCheckTest2() {
+        assertThrows(BoardNotAllowAccessException.class, () -> {
+           Board board = getBoard();
+           board.setUse(true);
+           board.setViewAccessRole(Role.USER);
+           boardRepository.saveAndFlush(board);
+
+           postInfoService.get(id);
+        });
+    }
 }

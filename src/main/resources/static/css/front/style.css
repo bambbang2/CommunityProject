@@ -91,3 +91,14 @@ aside li > a.on:after { content: ''; display: block; position: absolute; width: 
 
 .table-action { padding: 10px 0; border-bottom: 1px solid #d5d5d5; }
 
+/** 메인 프론트 */
+.main_inner { position: relative; margin: 0 auto; width: 1450px; }
+.container { width: 1160px; margin: 20px auto 0; }
+.left_content { width: 840px; float: left; }
+.right_content { float: right; width: 300px; }
+.login_box { position: relative; margin-bottom: 15px; border: 1px solid #FFB98B; background: #fff;}
+.user_info { padding: 0 18px; height: 43px; line-height: 44px; font-size: 14px; color: #FFB98B; }
+.user_info > a { color: #FF7E36; font-weight: bold; }
+.user_option { height: 36px; line-height: 36px; background: #f3f3f3; text-align: center; clear: both; }
+
+footer { clear: both; position: relative; padding-bottom: 50px; background: #fff;}

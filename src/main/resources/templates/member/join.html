@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layouts/front/main}">
+      layout:decorate="~{/layouts/front/basicmain}">
 
-    <main layout:fragment="content">
+    <main layout:fragment="basic_content">
         <div class="memberM">
             <form method="post" name="frmJoin" th:action="@{/member/join}" th:object="${memberJoin}" autocomplete="off" style="width: 25%;">
 
