@@ -82,7 +82,7 @@ public class MemberController {
 
 
     @GetMapping("/delete/{userNo}")
-    public String delete(@PathVariable Long userNo, Model model) {
+    public String delete(@PathVariable Long userNo) {
         Member member = listService.get(userNo);
 
         deleteService.delete(member.getUserNo());
@@ -94,7 +94,6 @@ public class MemberController {
         model.addAttribute("pageTitle", title);
         model.addAttribute("title", title);
         model.addAttribute("menuCode", "member");
-
     }
 
     @ExceptionHandler(CommonException.class)

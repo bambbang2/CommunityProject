@@ -40,17 +40,12 @@
                     <td th:text="*{#temporals.format(createdAt, 'yyyy.MM.dd')}"></td>
                 </tr>
 
-                <tr>
-                    <th>탈퇴 날짜</th>
-                    <td th:text="*{#temporals.format(deletedAt, 'yyyy.MM.dd')}"></td>
-                </tr>
-
             </table>
 
             <div class="search_btn">
                 <button type="submit">수정하기</button>
-                <button>
-                    <a th:href="@{/admin/member/delete}" th:text="#{member.delete}" onclick="return confirm('정말 탈퇴 처리 하시겠습니까?');"></a>
+                <button type="button">
+                    <a onclick="return confirm('정말 탈퇴 처리 하시겠습니까?');" th:href="@{/admin/member/delete/{userNo}(userNo=*{userNo})}" th:text="#{member.delete}"></a>
                 </button>
             </div>
         </form>

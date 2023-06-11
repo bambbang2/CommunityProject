@@ -36,7 +36,7 @@
                 </div>
 
                 <div>
-                    <input type="text" name="userNick" th:field="*{userNick}" th:placeholder="#{userNick}">
+                    <input type="text" name="userNick" th:field="*{userNick}" placeholder="닉네임 미입력시 이름으로 들어가용!">
                     <div class="errors" th:each="err : ${#fields.errors('userNick')}" th:text="${err}"></div>
                 </div>
 
