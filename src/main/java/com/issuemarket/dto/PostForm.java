@@ -34,5 +34,5 @@ public class PostForm {
     @NotBlank
     private String content;
 
-
+    private Long userNo; // 회원번호
 }

@@ -22,7 +22,10 @@ public class PostFormValidator implements Validator {
         PostForm postForm = (PostForm) target;
 
         // guestPw check
-        if (!memberUtil.isLogin()) {
+        Long id = postForm.getId();
+        Long userNo = postForm.getUserNo();
+
+        if ((id == null && !memberUtil.isLogin()) || (id != null && userNo == null)) { // 작성시 비회원 || 수정시 비회원
             String guestPw = postForm.getGuestPw();
             if (guestPw == null || guestPw.isBlank()) {
                 errors.rejectValue("guestPw", "NotBlank");

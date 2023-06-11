@@ -4,6 +4,7 @@ import com.issuemarket.commons.MemberUtil;
 import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Board;
 import com.issuemarket.entities.Post;
+import com.issuemarket.exception.PostNotExistException;
 import com.issuemarket.repositories.PostRepository;
 import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
 import com.issuemarket.validators.post.PostValidator;
@@ -47,13 +48,22 @@ public class PostSaveService {
 
             post.setBoard(board);
 
-            if (memberUtil.isLogin()) post.setMember(memberUtil.getEntity());
-            else {
+            if (memberUtil.isLogin()) {
+                post.setMember(memberUtil.getEntity());
+            } else {
                 post.setGuestPw(passwordEncoder.encode(postForm.getGuestPw()));
             }
 
         } else { // update
-
+            post = postRepository.findById(postForm.getId()).orElseThrow(PostNotExistException::new);
+            post.setPoster(postForm.getPoster());
+            post.setSubject(postForm.getSubject());
+            post.setContent(postForm.getContent());
+            post.setCategory(postForm.getCategory());
+            String guestPw = postForm.getGuestPw();
+            if (post.getMember() == null && guestPw != null && !guestPw.isBlank()) {
+                post.setGuestPw(passwordEncoder.encode(guestPw));
+            }
         }
 
         post = postRepository.saveAndFlush(post);
