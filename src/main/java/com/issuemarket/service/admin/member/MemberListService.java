@@ -45,13 +45,16 @@ public class MemberListService {
                 if (sopt.equals("all")) {
                     builder.and(member.userId.contains(skey))
                             .or(member.userNm.contains(skey))
-                            .or(member.userNick.contains(skey));
+                            .or(member.userNick.contains(skey))
+                            .or(member.mobile.contains(skey));
                 } else if (sopt.equals("userId")) {
                     builder.and(member.userId.contains(skey));
                 } else if (sopt.equals("userNm")) {
                     builder.and(member.userNm.contains(skey));
                 } else if (sopt.equals("userNick")) {
                     builder.and(member.userNick.contains(skey));
+                } else if (sopt.equals("mobile")) {
+                    builder.and(member.mobile.contains(skey));
                 }
             }
 

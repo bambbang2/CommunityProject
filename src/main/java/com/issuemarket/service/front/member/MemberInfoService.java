@@ -28,6 +28,7 @@ public class MemberInfoService implements UserDetailsService {
         }
 
         List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(member.getRoles().toString()));
+        
 
         return MemberInfo.builder() // session에서 사용자 정보를 불러 올 수 있게 memberInfo 회원정보 빌더패턴으로 추가
                 .userNo(member.getUserNo())

@@ -22,6 +22,7 @@ public class MemberSearch {
     private String userId;
     private String userNm;
     private String userNick;
+    private String mobile;
     private Role role;
 
     private int page = 1;

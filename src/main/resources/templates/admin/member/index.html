@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/admin/main}">
 <section layout:fragment="content">
-    <h1 th:text="${title}"></h1>
+<!--    <h1 th:text="${title}"></h1>-->
 
     <h2>회원 검색</h2>
     <form method="get" name="frmSearch" th:action="@{/admin/member}" autocomplete="off" th:object="${memberSearch}">
@@ -24,6 +24,7 @@
                             <option value="userId">아이디 검색</option>
                             <option value="userNm">회원명 검색</option>
                             <option value="userNick">닉네임 검색</option>
+                            <option value="mobile">핸드폰 번호 검색</option>
                         </select>
                         <input type="text" name="skey" th:field="*{skey}" placeholder="검색어를 입력해주세요" style="margin-left: 16px; width: 70%; height: 35px;">
                     </div>
@@ -40,7 +41,6 @@
     <h2>회원 목록</h2>
 
     <form method="post" th:action="@{/admin/member}" name="frmMemList" autocomplete="off" target="ifrmProcess">
-<!--        <input type="hidden" name="_method" value="patch">-->
         <table class="table-rows">
             <thead>
                 <tr>
@@ -70,8 +70,8 @@
                             <option th:each="role : ${roles}" th:value="${role}" th:text="${role}"></option>
                         </select>
                     </td>
-                    <td>
-                        <a th:text="*{userId}" th:href="@{/admin/member/update/{userNo}(userNo=*{userNo})}"></a>
+                    <td class="mId">
+                        <a th:text="*{userId}" th:href="@{/admin/member/view/{userNo}(userNo=*{userNo})}"></a>
                     </td>
                     <td th:text="*{userNm}"></td>
                     <td th:text="*{userNick}"></td>

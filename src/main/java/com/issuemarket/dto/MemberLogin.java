@@ -19,5 +19,4 @@ public class MemberLogin {
 
     private boolean savedId;
 
-    private String success;
 }

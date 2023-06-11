@@ -1,6 +1,5 @@
 package com.issuemarket.dto;
 
-import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,11 +18,9 @@ public class MemberJoin {
     @Size(min = 5, max = 20)
     private String userId;
 
-    @NotBlank
     @Size(min = 8)
     private String userPw;
 
-    @NotBlank
     private String userPwRe;
 
     @NotBlank
@@ -31,8 +28,16 @@ public class MemberJoin {
 
     private String userNick;
 
+    @NotBlank
     private String mobile;
 
-    @AssertTrue
+    /** 주소 관련 */
+    private String zipcode;
+
+    private String address;
+
+    private String addressSub;
+
+//    @AssertTrue
     private boolean[] agrees;
 }

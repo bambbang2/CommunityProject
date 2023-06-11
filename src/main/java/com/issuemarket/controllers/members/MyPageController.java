@@ -5,18 +5,19 @@ import com.issuemarket.dto.MemberInfo;
 import com.issuemarket.dto.MemberInfoRequest;
 import com.issuemarket.entities.Member;
 import com.issuemarket.service.front.member.MyPageService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/member/mypage")
 public class MyPageController {
     @Autowired
     MyPageService myPageService;
@@ -38,6 +39,8 @@ public class MyPageController {
         System.out.println(request);
         model.addAttribute("member", request);
 
+
+
         return "/member/myinfo";
     }
 
@@ -54,6 +57,12 @@ public class MyPageController {
         }catch(Exception e){
             model.addAttribute("errorMessage", "서버 내 문제입니다. 관리자에게 문의해주세요");
         }
+
+        return "/member/myinfo";
+    }
+
+    @GetMapping("/mywrite")
+    public String myWrite(){
 
         return "/member/myinfo";
     }
