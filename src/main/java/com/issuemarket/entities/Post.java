@@ -44,6 +44,5 @@ public class Post extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="userNo")
-    @ToString.Exclude
     private Member member;
 }
