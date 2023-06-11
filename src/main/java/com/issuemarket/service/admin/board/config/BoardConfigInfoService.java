@@ -38,6 +38,10 @@ public class BoardConfigInfoService {
     }
 
     private void accessCheck(Board board, String location) {
+        if (!board.isUse() && !memberUtil.isAdmin()) {
+            throw new BoardNotAllowAccessException();
+        }
+
         Role role = Role.ALL;
         if (location.equals("list")) { // 게시글 목록
             role = board.getListAccessRole();

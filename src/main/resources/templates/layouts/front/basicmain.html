@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <meta name="description" th:content="${@siteConf.get('siteDescription')}">
+    <title>
+        <th:block th:if="${pageTitle != null}" th:text="${pageTitle + ' ::ദ്ദി₍ᐢ.ˬ.ᐢ₎'}"></th:block>
+        <th:block th:text="${@siteConf.get('siteTitle')}"></th:block>
+    </title>
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/front/style.css?v={v}(v=${@siteConf.get('cssJsVersion')})}">
+    <link rel="stylesheet" type="text/css" th:each="file : ${addCss}"
+          th:href="@{/css/front/{cssFile}.css?v={v}(cssFile=${file}, v=${@siteConf.get('cssJsVersion')})}">
+    <th:block layout:fragment="addCss"></th:block>
+
+    <script th:src="@{/js/front/common.js?v={v}(v=${@siteConf.get('cssJsVersion')})}"></script>
+    <script th:each="jsFile : ${addScript}"
+            th:src="@{/js/front/{jsFile}.js?v={v}(jsFile=${jsFile}, v=${@siteConf.get('cssJsVersion')})}"></script>
+    <th:block layout:fragment="addScript"></th:block>
+
+</head>
+<body>
+<header th:replace="~{outlines/front/header::common}"></header>
+<div th:replace="~{outlines/front/headerbar::navbar}"></div>
+<div class="main_inner">
+        <main layout:fragment="basic_content"></main>
+
+
+</div>
+
+<footer th:replace="~{outlines/front/footer::common}"></footer>
+
+<iframe name="ifrmProcess" class="dn"></iframe>
+</body>
+</html>

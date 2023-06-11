@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta name="_csrf" th:content="${_csrf.token}">
         <meta name="_csrf_header" th:content="${_csrf.headerName}">
@@ -26,7 +27,36 @@
     <body>
         <header th:replace="~{outlines/front/header::common}"></header>
         <div th:replace="~{outlines/front/headerbar::navbar}"></div>
-        <main layout:fragment="content"></main>
+        <div class="main_inner">
+            <main class="container">
+        <main layout:fragment="content" class="left_content"></main>
+        <section class="right_content">
+            <div>
+                <div class="login_box">
+                    <div class="user_info">
+                        <th:block sec:authorize="isAuthenticated()"> <!-- 로그인한 상태 -->
+                            <span th:text="${#messages.msg('member.login.msg', session.memberInfo.userNm,
+                session.memberInfo.userId)}"></span>
+                        </th:block>
+                        <th:block sec:authorize="isAnonymous()">
+                            <a th:href="@{/member/login}" th:text="#{member.login.view}"></a>
+                        </th:block>
+                    </div>
+                    <div class="user_option">
+                        <span>
+                               <i class="xi-home-o"></i>
+                            <a th:text="#{member.mypage}" href="#"></a>
+                        </span>
+                        <span>
+                            <i class="xi-star-o"></i>
+                            <a th:text="#{member.bookmark}" href="#"></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+            </main>
+        </div>
 
         <footer th:replace="~{outlines/front/footer::common}"></footer>
 

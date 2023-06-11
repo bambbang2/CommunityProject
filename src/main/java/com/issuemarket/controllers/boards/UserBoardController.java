@@ -3,9 +3,12 @@ package com.issuemarket.controllers.boards;
 import com.issuemarket.commons.MemberUtil;
 import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Board;
+import com.issuemarket.entities.Post;
 import com.issuemarket.exception.CommonException;
 import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
+import com.issuemarket.service.admin.post.PostInfoService;
 import com.issuemarket.service.admin.post.PostSaveService;
+import com.issuemarket.service.admin.post.UpdateHitService;
 import com.issuemarket.validators.post.PostFormValidator;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -29,12 +32,18 @@ public class UserBoardController {
     private final HttpServletResponse response;
     private final MemberUtil memberUtil;
     private final PostFormValidator postFormValidator;
+    private final PostInfoService postInfoService;
+    private final UpdateHitService updateHitService;
 
     private Board board;
 
     @GetMapping("/list/{bId}")
-    public String list(@PathVariable String bId, Model model) {
+    public String list(@PathVariable String bId, @RequestParam(value = "category", required = false) String categoryName , Model model) {
         commonProcess(bId, "list", model);
+
+        Board board = boardConfigInfoService.get(bId, "list");
+
+//        Post post = postInfoService.get
 
 
         return "board/list";
@@ -56,7 +65,9 @@ public class UserBoardController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        commonProcess(null, "update", model);
+        Post post = postInfoService.get(id, "update");
+        Board board = post.getBoard();
+        commonProcess(board.getBId(), "update", model);
 
 
         return "board/update";
@@ -85,8 +96,14 @@ public class UserBoardController {
 
     @GetMapping("/view/{id}")
     public String view(@PathVariable long id, Model model) {
-        commonProcess(null, "view", model);
+        Post post = postInfoService.get(id);
+        Board board = post.getBoard();
+        commonProcess(board.getBId(), "view", model);
 
+        model.addAttribute("post", post);
+        model.addAttribute("board", board);
+
+        updateHitService.update(id);
 
         return "board/view";
     }
