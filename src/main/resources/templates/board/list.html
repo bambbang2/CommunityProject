@@ -4,37 +4,32 @@
       layout:decorate="~{layouts/front/main}">
 
 <main layout:fragment="content">
+    <form method="post">
     <th:block th:replace="~{board/form/_board_title::title}"></th:block>
     게시글 리스트 테스트
     <h1 th:text="${test}"></h1>
     <table class="table-rows">
         <thead>
         <tr>
-            <th>
-               글번호
-            </th>
+            <th>글번호</th>
             <th>제목</th>
             <th>글쓴이</th>
             <th>작성일</th>
-            <th>조회</th>
+            <th>조회수</th>
             <th>좋아요</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>
-                1
-            </td>
-            <td class="test1">제목 테스트</td>
-            <td>작성자 테스트</td>
-            <td>
-                작성일 테스트
-            </td>
-            <td>조회 테스트</td>
+        <tr th:each="item : ${postList}" th:object="${item}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{subject}"></td>
+<!--            <td th:text="*{member.userId}"></td>-->
+            <td th:text="*{#temporals.format(createdAt, 'yyyy.MM.dd')}">작성일 테스트</td>
+            <td th:text="*{hit}"></td>
             <td>좋아요 테스트</td>
         </tr>
         </tbody>
     </table>
-
+    </form>
 </main>
 </html>
