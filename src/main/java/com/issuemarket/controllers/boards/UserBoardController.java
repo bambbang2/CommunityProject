@@ -1,6 +1,7 @@
 package com.issuemarket.controllers.boards;
 
 import com.issuemarket.commons.MemberUtil;
+import com.issuemarket.dto.BoardSearch;
 import com.issuemarket.dto.MemberInfo;
 import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Board;
@@ -11,16 +12,14 @@ import com.issuemarket.exception.BoardNotAllowAccessException;
 import com.issuemarket.exception.CommonException;
 import com.issuemarket.exception.GuestPasswordCheckException;
 import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
-import com.issuemarket.service.admin.post.GuestPasswordCheckService;
-import com.issuemarket.service.admin.post.PostInfoService;
-import com.issuemarket.service.admin.post.PostSaveService;
-import com.issuemarket.service.admin.post.UpdateHitService;
+import com.issuemarket.service.admin.post.*;
 import com.issuemarket.validators.post.PostFormValidator;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,17 +42,21 @@ public class UserBoardController {
     private final PostInfoService postInfoService;
     private final UpdateHitService updateHitService;
     private final GuestPasswordCheckService guestPwCheckService;
+    private final PostListService postListService;
     private final HttpSession session;
 
     private Board board;
 
     @GetMapping("/list/{bId}")
-    public String list(@PathVariable String bId, @RequestParam(value = "category", required = false) String categoryName , Model model) {
+    public String list(@PathVariable String bId, @RequestParam(value = "category", required = false) String categoryName,
+                       Model model, BoardSearch boardSearch) {
         commonProcess(bId, "list", model);
 
         Board board = boardConfigInfoService.get(bId, "list");
 
-//        Post post = postInfoService.get
+        // 카테고리별 조회하기 **
+        Page<Post> items = postListService.gets(boardSearch);
+        model.addAttribute("postList", items.getContent());
 
 
         return "board/list";

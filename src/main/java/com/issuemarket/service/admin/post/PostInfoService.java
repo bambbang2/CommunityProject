@@ -9,6 +9,7 @@ import com.issuemarket.service.admin.board.config.BoardConfigInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,11 +34,14 @@ public class PostInfoService {
     }
 
     // 구현중
-    public List<Post> gets(String bId, String location) {
+    public List<Post> gets(String bId, String location, String cate) {
 
         Board board = boardConfigInfoService.get(bId, location);
 
         List<Post> postList = postRepository.findAll();
+
+        postList.stream().filter(p -> p.getCategory().equals(cate));
+
 
         return postList;
     }

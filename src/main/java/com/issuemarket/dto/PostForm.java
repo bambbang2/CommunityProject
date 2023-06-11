@@ -26,6 +26,7 @@ public class PostForm {
 
     private String guestPw;
 
+    @NotBlank
     private String category;
 
     @NotBlank

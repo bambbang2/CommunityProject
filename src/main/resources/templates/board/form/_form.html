@@ -24,6 +24,7 @@
                     <input type="radio" name="category" th:value="${category}" th:id="${'category_' + status.index}">
                     <label th:for="${'category_' + status.index}" th:text="${category}"></label>
                 </th:block>
+                <div class="errors" th:each="err : ${#fields.errors('category')}" th:text="${err}"></div>
             </dd>
         </dl>
         <dl>
