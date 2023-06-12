@@ -1,6 +1,7 @@
 package com.issuemarket.dto;
 
 import com.issuemarket.commons.constants.Role;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,10 +20,12 @@ public class MemberSearch {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate eDate;
 
-    private String userId;
+    @NotBlank
     private String userNm;
-    private String userNick;
+
+    @NotBlank
     private String mobile;
+
     private Role role;
 
     private int page = 1;

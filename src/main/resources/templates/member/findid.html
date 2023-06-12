@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/front/basicmain}">
     <main layout:fragment="basic_content">
         <h1 th:text="${title}"></h1>
-        <form method="post" name="frmFindId" autocomplete="off" th:object="${memberSearch}">
+        <form method="post" name="frmFindId" th:action=@{/member/find/id} autocomplete="off" th:object="${memberSearch}">
             <table class="table-cols">
                 <tr>
                     <th>회원명</th>

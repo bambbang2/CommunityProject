@@ -11,6 +11,8 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
 
     Member findBySocialChannelAndSocialId(String channel, String id);
 
+    Member findByUserNmAndMobile(String userNm, String mobile);
+
     default boolean exist(String userId) {
         QMember member = QMember.member;
 
@@ -26,6 +28,5 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
                 .and(member.socialId.eq(socialId));
 
         return exists(builder);
-
     }
 }
