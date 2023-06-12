@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <script th:if="${script != null }">
+        swal('asfad', th:utext=${script}, 'success').then(function() {
+            location.href="${pageContext.request.contextPath}/";
+        });
+    </script>
+
+</body>
+
+</html>
