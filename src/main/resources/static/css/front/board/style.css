@@ -1,0 +1,24 @@
+.table-list { width: 100%; border-spacing: 0; padding: 0; margin-bottom: 20px; border-bottom: 1px solid #FF7E36; }
+.table-list th { height: 37px; border-width: 2px 0 1px; border-style: solid;
+ border-color: #FF7E36; vertical-align: middle; text-align: center; color: #333;}
+.table-list td { height: 25px; vertical-align: middle; text-align: center; color: #333; }
+.list_num { font-size: 11px; padding-top: 1px; }
+.list_subject { position: relative; text-align: left; font-size: 13px; cursor: pointer; }
+.table-list th { border-bottom: 1px solid #FFB98B; }
+.table-list td { border-bottom: 1px solid #d5d5d5; height: 27px; }
+
+
+
+.table-cols { width: 100%; border-spacing: 0; padding: 0; border-top: 3px solid #222; margin-bottom: 20px; }
+.table-cols th { background: #f8f8f8; width: 160px; padding: 10px 20px; text-align: left; }
+.table-cols td { background: #fff; padding: 10px 15px; }
+.table-cols th,
+.table-cols td { border-bottom: 1px solid #d5d5d5; }
+
+.table-rows { width: 100%; border-spacing: 0; padding: 0; }
+.table-rows th { background: #7a7c89; color: #fff; border-top: 1px solid #d5d5d5; padding: 12px 10px; }
+.table-rows td { padding: 15px 10px; text-align: center; }
+.table-rows th, .table-rows td { border-bottom: 1px solid #d5d5d5; border-right: 1px solid #d5d5d5; }
+.table-rows th:first-of-type, .table-rows td: first-of-type { border-left: 1px solid #d5d5d5; }
+
+.table-action { padding: 10px 0; border-bottom: 1px solid #d5d5d5; }

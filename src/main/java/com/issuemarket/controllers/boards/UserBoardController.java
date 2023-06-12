@@ -55,9 +55,8 @@ public class UserBoardController {
         Board board = boardConfigInfoService.get(bId, "list");
 
         // 카테고리별 조회하기 **
-        Page<Post> items = postListService.gets(boardSearch);
+        Page<Post> items = postListService.gets(boardSearch, categoryName);
         model.addAttribute("postList", items.getContent());
-
 
         return "board/list";
     }

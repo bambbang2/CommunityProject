@@ -8,7 +8,7 @@
     <th:block th:replace="~{board/form/_board_title::title}"></th:block>
     게시글 리스트 테스트
     <h1 th:text="${test}"></h1>
-    <table class="table-rows">
+    <table class="table-list">
         <thead>
         <tr>
             <th>글번호</th>
@@ -21,12 +21,12 @@
         </thead>
         <tbody>
         <tr th:each="item : ${postList}" th:object="${item}">
-            <td th:text="*{id}"></td>
-            <td th:text="*{subject}"></td>
-<!--            <td th:text="*{member.userId}"></td>-->
-            <td th:text="*{#temporals.format(createdAt, 'yyyy.MM.dd')}">작성일 테스트</td>
-            <td th:text="*{hit}"></td>
-            <td>좋아요 테스트</td>
+            <td class="list_num" th:text="*{id}"></td>
+            <td class="list_subject" th:text="*{subject}"></td>
+            <td class="list_poster" th:text="*{poster}"></td>
+            <td class="list_num" th:text="*{#temporals.format(createdAt, 'yyyy.MM.dd')}">작성일 테스트</td>
+            <td class="list_num" th:text="*{hit}"></td>
+            <td class="list_num">1</td>
         </tr>
         </tbody>
     </table>

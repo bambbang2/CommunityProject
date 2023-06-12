@@ -2,10 +2,7 @@ package com.issuemarket.entities;
 
 import com.issuemarket.commons.constants.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,6 +69,7 @@ public class Board extends BaseMemberEntity {
     private boolean isGuest;
 
     @OneToMany(mappedBy = "board")
+    @ToString.Exclude
     private List<Post> postList = new ArrayList<>();
 
     // 게시판 카테고리
