@@ -3,10 +3,7 @@ package com.issuemarket.entities;
 import com.issuemarket.commons.constants.Role;
 import com.issuemarket.dto.MemberInfoRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
@@ -45,6 +42,7 @@ public class Member extends BaseEntity {
     private Role roles = Role.USER;  // 권한 ( 기본 - 회원 )
 
     @OneToMany(mappedBy = "member")
+    @ToString.Exclude
     private List<Post> postList = new ArrayList<>();
 
     /** 주소 관련 */
