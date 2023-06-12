@@ -22,7 +22,7 @@ public class PostListService {
     private final BoardRepository boardRepository;
 
 
-    public Page<Post> gets(BoardSearch boardSearch) {
+    public Page<Post> gets(BoardSearch boardSearch, String category) {
         QPost post = QPost.post;
         BooleanBuilder builder = new BooleanBuilder();
 
@@ -30,7 +30,15 @@ public class PostListService {
         int pageSize = boardSearch.getPageSize();
 
         page = page < 1 ? 1 : page;
-        pageSize = pageSize < 1 ? 20 : pageSize;
+//        pageSize = pageSize < 1 ? 20 : pageSize;
+
+        pageSize = 3; // 페이지 테스트
+
+        /** 분류 검색 S */
+        if (category != null && !category.isBlank()) {
+            builder.and(post.category.eq(category));
+        }
+        /** 분류 검색 E */
 
         String sopt = boardSearch.getSopt();
         String skey = boardSearch.getSkey();
@@ -46,8 +54,8 @@ public class PostListService {
                 builder.and(post.subject.contains(skey));
             } else if (sopt.equals("content")) {
                 builder.and(post.content.contains(skey));
-            } else if (sopt.equals("userNick")) {
-                builder.and(post.member.userNick.contains(skey));
+            } else if (sopt.equals("poster")) {
+                builder.and(post.poster.contains(skey));
             }
         }
 
