@@ -16,8 +16,6 @@ Market !!
 - 홍다경
 - 이다빈
 - 김진희
-- 봉재현
-
 ### 📌프로젝트 주요 기능
 
 1) 회원가입 / 로그인
@@ -40,9 +38,22 @@ Market !!
 <h3 align="center">🛠️ Tech Stack 🛠️</h3>
 <p align="center">Techs that We've used</p>
 
-Front-End
+### Front-End
+- Html/Css
+- JavaScript
+- Bootstrap 
 
-Back-End
+### Build Tool
+- Maven
+
+### DataBase
+- DBeaver
+
+### Back-End
+- Java
+- SpringBoot
+- JPA
+- Spring Security
 
 ### 팀원 별 업무 
 - 최지욱 :
