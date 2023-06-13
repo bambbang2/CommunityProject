@@ -3,8 +3,11 @@ package com.issuemarket.controllers.members;
 import com.issuemarket.commons.MemberUtil;
 import com.issuemarket.dto.MemberInfo;
 import com.issuemarket.dto.MemberInfoRequest;
+import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Member;
+import com.issuemarket.service.admin.post.PostListService;
 import com.issuemarket.service.front.member.MyPageService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,17 +17,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/member/mypage")
+@RequiredArgsConstructor
 public class MyPageController {
-    @Autowired
-    MyPageService myPageService;
 
-    @Autowired
-    private MemberUtil memberUtil;
-
+    private final MyPageService myPageService;
+    private final MemberUtil memberUtil;
+    private final PostListService postListService;
 
     @GetMapping("/myinfo")
     public String myPage(Model model) {
@@ -44,6 +47,7 @@ public class MyPageController {
         return "/member/myinfo";
     }
 
+    // 정보 수정
     @PostMapping("/myinfo")
     public String myPage1(@ModelAttribute("member") MemberInfoRequest memberInfoRequest, Principal principal, Model model) {
         System.out.println(memberInfoRequest);
@@ -61,9 +65,13 @@ public class MyPageController {
         return "/member/myinfo";
     }
 
+    // 내가 쓴 글 확인
     @GetMapping("/mywrite")
-    public String myWrite(){
+    public String myWrite(Principal principal, Model model){
+        List<PostForm> postFormList = myPageService.getPostsByUser(principal);
 
-        return "/member/myinfo";
+        model.addAttribute("postFormList", postFormList);
+
+        return "/member/mywrite";
     }
 }

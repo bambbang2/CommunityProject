@@ -1,16 +1,22 @@
 package com.issuemarket.service.front.member;
 
 import com.issuemarket.dto.MemberInfoRequest;
+import com.issuemarket.dto.PostForm;
 import com.issuemarket.entities.Member;
+import com.issuemarket.entities.Post;
 import com.issuemarket.repositories.MemberRepository;
 import com.issuemarket.repositories.MyPageRepository;
+import com.issuemarket.repositories.PostRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +26,7 @@ public class MyPageService {
 
     private final MyPageRepository myPageRepository;
     private final MemberRepository memberRepository;
+    private final PostRepository postRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -70,6 +77,23 @@ public class MyPageService {
         // 회원정보 업데이트
         member.updateMember(memberInfoRequest, passwordEncoder);
 
+    }
+
+    // UserId
+    public List<PostForm> getPostsByUser(Principal principal){
+        String userId = principal.getName();
+        Member member = memberRepository.findByUserId(userId);
+
+        List<Post> postList = postRepository.findByMember(member, Sort.by(Sort.Direction.DESC, "id"));
+
+        List<PostForm> postFormList = new ArrayList<>();
+
+        for(Post post : postList){
+            PostForm postForm = PostForm.of(post);
+            postFormList.add(postForm);
+        }
+
+        return postFormList;
     }
 }
 
