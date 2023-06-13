@@ -20,6 +20,8 @@ public class MemberSearch {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate eDate;
 
+    private String userId;
+
     @NotBlank
     private String userNm;
 

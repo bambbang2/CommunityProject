@@ -2,15 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{/layouts/admin/main}">
-    <section layout:fragment="content" th:object="${member}">
+    <section layout:fragment="content" th:object="${memberJoin}">
         <h1>
             [[${title}]]([[*{userId}]])
         </h1>
-        <form method="post" name="frmMemberDetail" th:action="@{/admin/member/view/{userNo}(userNo=*{userNo})}" autocomplete="off">
+        <form method="post" name="frmMemberDetail" autocomplete="off">
             <table class="table-cols">
                 <tr>
                     <th>회원번호</th>
                     <td th:text="*{userNo}"></td>
+                </tr>
+
+                <tr>
+                    <th>권한</th>
+                    <td>
+                        <input type="radio" name="role" value="USER" id="role_USER" th:field="*{roles}">
+                        <label for="role_USER">회원</label>
+
+                        <input type="radio" name="role" value="ADMIN" id="role_ADMIN" th:field="*{roles}">
+                        <label for="role_ADMIN">관리자</label>
+                    </td>
                 </tr>
 
                 <tr>
