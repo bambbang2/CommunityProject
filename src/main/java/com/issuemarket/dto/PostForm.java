@@ -1,10 +1,12 @@
 package com.issuemarket.dto;
 
+import com.issuemarket.entities.Post;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import java.util.UUID;
 
@@ -36,4 +38,10 @@ public class PostForm {
     private String content;
 
     private Long userNo; // 회원번호
+
+    private static ModelMapper modelMapper = new ModelMapper();
+
+    public static PostForm of(Post post){
+        return modelMapper.map(post, PostForm.class);
+    }
 }

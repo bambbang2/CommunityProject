@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/front/main}">
+<head>
+  <link th:href="@{css/myInfo/style.css}" rel="stylesheet" />
+</head>
+<main layout:fragment="content">
+
+  <div class="question_wrap">
+    <h1>1:1 문의하기</h1>
+      <form action="/question/write" method="post" th:object="${questionForm}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+        <select th:field="*{type}">
+          <th:block th:each="value : ${questionTypes}">
+            <option th:value="${value}" th:text="${value}"></option>
+          </th:block>
+        </select>
+        <select th:field="*{category}">
+          <th:block th:each="value : ${questionCategories}">
+            <option th:value="${value}" th:text="${value}"></option>
+          </th:block>
+        </select>
+        <ul>
+          <li>
+            <input type="text" placeholder="제목" th:field="*{title}">
+          </li>
+          <li>
+            <textarea cols="30" rows="10" placeholder="문의하실 내용을  적어 주세요" th:field="*{content}"> </textarea>
+          </li>
+        </ul>
+        <button type="submit">목록</button>
+        <button type="submit">등록</button>
+      </form>
+  </div>
+
+  <script>
+        const errorMessage = "[[${errorMessage}]]";
+        if(errorMessage != ""){
+            alert(errorMessage);
+        }
+    </script>
+</main>
+</html>

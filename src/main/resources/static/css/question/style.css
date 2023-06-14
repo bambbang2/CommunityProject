@@ -1,0 +1,22 @@
+.question_wrap{
+    text-align :  center;
+}
+
+.question_wrap h1{
+
+    font-size : 2rem;
+}
+.question_text{
+    padding:29px;
+}
+.question_btn{
+    text-align : center;
+    border-radius : 10%;
+    background-color : #FFB98B;
+    margin : 40px;
+    width : 70px;
+}
+
+.qna_wrap{
+    position : relative;
+}
