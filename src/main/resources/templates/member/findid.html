@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/front/basicmain}">
-    <main layout:fragment="basic_content">
+      layout:decorate="~{layouts/front/main}">
+    <main layout:fragment="content">
         <h1 th:text="${title}"></h1>
         <form method="post" name="frmFindId" th:action=@{/member/find/id} autocomplete="off" th:object="${memberSearch}">
             <table class="table-cols">

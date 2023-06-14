@@ -47,7 +47,7 @@ public class MemberController {
     @PostMapping
     public String listPs(@ModelAttribute Member member, Model model) {
         commonProcess(model, "회원 관리");
-        System.out.println("Before member " + member);
+
         String updateRole = String.valueOf(member.getRoles());
         member = listService.get(member.getUserNo());
 
@@ -65,13 +65,13 @@ public class MemberController {
         
         Member member = memberRepository.findById(userNo).orElseThrow(MemberNotFoundException::new);
 
-        model.addAttribute("member", member);
+        model.addAttribute("memberJoin", member);
 
         return "admin/member/view";
     }
 
     @PostMapping("/view/{userNo}")
-    public String viewPs(@PathVariable Long userNo, @ModelAttribute("member") MemberJoin memberJoin, Model model) {
+    public String viewPs(@PathVariable Long userNo, @ModelAttribute MemberJoin memberJoin, Model model) {
         commonProcess(model, "회원 상세 조회");
 
         updateService.update(userNo, memberJoin);

@@ -21,7 +21,7 @@
             <th:block sec:authorize="isAuthenticated()">
                 <a th:href="@{/member/logout}" th:text="#{member.logout}" class="sbtn carrot"></a>
 
-                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{adminPage}"></a>
+                <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin}" th:text="#{adminPage}" class="sbtn carrot"></a>
             </th:block>
 
             <!-- 비회원일 경우 -->

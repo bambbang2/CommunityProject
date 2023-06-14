@@ -13,7 +13,7 @@
                 <span th:text="${#messages.msg('member.login.msg', session.memberInfo.userNm,
                 session.memberInfo.userId)}"></span>
                 <a th:href="@{/member/logout}" th:text="#{member.logout}" class="sbtn carrot"></a>
-                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}" th:text="#{adminPage}"}></a>
+                <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/admin}" th:text="#{adminPage}" class="sbtn carrot"}></a>
             </th:block>
 
             <th:block sec:authorize="isAnonymous()">

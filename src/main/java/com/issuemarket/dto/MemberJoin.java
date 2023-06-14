@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor @AllArgsConstructor
 public class MemberJoin {
 
+    private Long userNo;
+
     @NotBlank
     @Size(min = 5, max = 20)
     private String userId;
@@ -30,6 +32,8 @@ public class MemberJoin {
 
     @NotBlank
     private String mobile;
+
+    private String roles = "USER";
 
     /** 주소 관련 */
     private String zipcode;

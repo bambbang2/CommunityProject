@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,10 +14,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-public class SecurityConfig {
+@EnableWebSecurity
+public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         http.formLogin()
                 .loginPage("/member/login")
@@ -30,11 +34,11 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/member/login");
 
         /** 회원가입 구현 후 주석 해제 예정 */
-//        http.authorizeHttpRequests()
-//                .requestMatchers("/", "/member/**", "/error/**").permitAll()
-//                .requestMatchers("/member/mypage/**").hasAuthority("USER")
-//                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-//                .anyRequest().authenticated();
+        http.authorizeHttpRequests()
+                .requestMatchers("/", "/member/**", "/error/**").permitAll()
+                .requestMatchers("/member/mypage/**").hasAuthority("USER")
+                .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated();
 
         /**
          *  관리자 페이지에 권한없는 요청 URL 접속시 401 코드 및 오류 페이지 이동

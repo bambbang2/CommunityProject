@@ -19,4 +19,13 @@ public class MemberSearchService {
 
         return userId;
     }
+
+    public Long pwSearch(String userId, String userNm, String mobile) {
+
+        Member member = repository.findByUserIdAndUserNmAndMobile(userId, userNm, mobile);
+
+        Long memberNo = member.getUserNo();
+
+        return memberNo;
+    }
 }

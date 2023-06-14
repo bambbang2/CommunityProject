@@ -13,6 +13,8 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
 
     Member findByUserNmAndMobile(String userNm, String mobile);
 
+    Member findByUserIdAndUserNmAndMobile(String userId, String userNm, String mobile);
+
     default boolean exist(String userId) {
         QMember member = QMember.member;
 
