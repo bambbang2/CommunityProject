@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
 <head>
-    <link th:href="@{css/myInfo/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/myinfo/style.css">
 </head>
 <main layout:fragment="content">
 
@@ -13,58 +13,74 @@
             <input type="hidden" th:field="*{userNo}">
         </th:block>
 
-        <div>
 
-            <div style="border: 1px solid red;display:flex;">
-                <div style="border: 1px solid blue; width:10%">
-                    <div style="border: 1px solid red;">
+
+            <div class="menu-bar">
+                <div class="left-bar">
+                    <div class="menu-sidebar">
                         <a href="javascript:;"><span>내 정보 수정</span></a>
                     </div>
-                    <div style="border: 1px solid blue;">
-                        <a th:href="@{/member/mypage/mywrite}"><span>내가 쓴 글 확인하기</span></a>
+                    <div class="menu-sidebar">
+                        <a th:href="@{/member/mypage/mywrite}"><span>내가 쓴 글</span></a>
 
                     </div>
                 </div>
-                <div style="border: 1px solid green;width:90%">
-                    <div style="border: 1px solid red;">
+
+                <div class="right-bar">
+                    <div class="main_bar">
                         <span> 아이디</span>
-                        <input type="text"  th:field="*{userId}">
+                        <div class="user-fiexed">
+                        <span th:text="*{userId}"></span>
+                            <input type="hidden" th:field="*{userId}">
+                        </div>
                     </div>
-                    <div style="border: 1px solid blue;">
+                    <div class="main_bar">
                         <span>비밀번호</span>
+                        <div>
                         <input type="password"  th:field="*{userPw}">
+                        </div>
                     </div>
-                    <div style="border: 1px solid blue;">
+                    <div class="main_bar">
                         <span>새 비밀번호</span>
+                        <div>
                         <input type="password"  th:field="*{userNewPw}">
+                            </div>
                     </div>
-                    <div style="border: 1px solid blue;">
+                    <div class="main_bar">
                         <span>새 비밀번호 확인</span>
+                        <div>
                         <input type="password"  th:field="*{userNewPwRe}">
+                            </div>
                     </div>
-                    <div style="border: 1px solid green;">
+                    <div class="main_bar">
                         <span> 이름</span>
-                        <input type="text"  th:field="*{userNm}">
+                        <div class="user-fiexed">
+                            <span th:text="*{userNm}"></span>
+                            <input type="hidden" th:field="*{userNm}">
+                        </div>
                     </div>
-
-                    <div style="border: 1px solid green;">
+                    <div class="main_bar">
                         <span>닉네임</span>
+                        <div>
                         <input type="text"  th:field="*{userNick}">
+                            </div>
                     </div>
-                    <div style="border: 1px solid green;">
+                    <div class="main_bar">
                         <span>핸드폰</span>
+                        <div>
                         <input type="text"  th:field="*{mobile}">
+                        </div>
                     </div>
+                    <button type="submit">수정하기</button>
                 </div>
+
             </div>
-        </div>
 
 
 
 
 
 
-        <button type="submit">수정하기</button>
     </form>
 
     <!--  <form method="post" th:action="@{/member/myinfo}" th:object="${member}">
@@ -80,11 +96,5 @@
 
       -->
 
-    <script>
-        const errorMessage = "[[${errorMessage}]]";
-        if(errorMessage != ""){
-            alert(errorMessage);
-        }
-    </script>
 </main>
 </html>

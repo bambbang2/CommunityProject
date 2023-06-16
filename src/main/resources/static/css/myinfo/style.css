@@ -1,0 +1,55 @@
+.menu-bar{
+display:flex;
+}
+.left-bar{
+width: 20%;
+    background: #FFB98B;
+    border: 1px solid black;
+    border-right-color: #FFB98B
+
+}
+.right-bar{
+width:80%;
+border:1px solid black
+
+}
+.menu-sidebar{
+padding:30px;
+}
+.menu-sidebar > a > span{
+
+font-size: 20px;
+    font-weight: bold;
+}
+.user-fiexed{
+border: 1px solid black;
+}
+.main_bar{
+padding:10px;
+}
+.main_bar > span{
+font-size: 20px;}
+
+.user-fiexed{
+display: flex;
+align-items: center;
+border: 1px solid #d5d5d5;
+    height: 35px;
+    width: 100%;
+    padding: 0 20px;
+}
+.menu-sidebar:hover {
+background-color:#ffd5b9;
+
+
+
+}
+.right-bar > button {
+    background-color : #FFB98B;
+    float: right;
+    margin: 10px;
+    padding: 20px;
+    border-color: #FFB98B;
+}
+
+
