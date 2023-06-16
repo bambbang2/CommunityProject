@@ -13,17 +13,34 @@
             도움이 필요하신가요?<br><br>
             문의를 남겨주시면 자세히 안내 드리겠습니다.
         </div>
+
         <div class="question_btn">
-            <a th:href="@{/question/write}">문의하기</a>
+            <a th:href="@{/question/write}"><button class="qan_write_button" type="button">
+                문의하기
+            </button></a>
         </div>
 
-        <div class="qna_wrap">
-            <div class="qna_list">
 
+
+    <div class="qna_list_wrap">
+            <div class="qna_title">
+                <strong>문의하기 목록</strong>
+                <p>신속하게 처리 하도록 노력 하겠습니다.</p>
             </div>
-        </div>
+            <div>
+            <table class="list-table">
+                <thead>
+                <tr>
+                    <th width="70">번호</th>
+                    <th width="500">제목</th>
+                    <th width="120">글쓴이</th>
+                    <th width="100">작성일</th>
+                    <th width="100">처리 상태</th>
+                </tr>
+                </thead>
+            </table>
+            </div>
     </div>
-
     <script>
         const errorMessage = "[[${errorMessage}]]";
         if(errorMessage != ""){

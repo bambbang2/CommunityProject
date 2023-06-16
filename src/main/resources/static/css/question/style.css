@@ -1,22 +1,35 @@
+/*question main -S-*/
 .question_wrap{
     text-align :  center;
 }
 
 .question_wrap h1{
-
     font-size : 2rem;
 }
 .question_text{
     padding:29px;
 }
-.question_btn{
+.qan_write_button{
     text-align : center;
-    border-radius : 10%;
-    background-color : #FFB98B;
-    margin : 40px;
-    width : 70px;
+    padding: 8px 0;
+    border-radius: 6px;
+    width: 212px;
+    background-color: #FFB98B;
+    color: #fff;
+}
+/*question main -E-*/
+
+
+/*question write -S-*/
+.tit{
+    margin-top: 20px;
 }
 
-.qna_wrap{
-    position : relative;
+.qan_write_submit{
+/*등록 버튼*/
 }
+.qan_write_list{
+/*목록 버튼*/
+}
+
+/*question write -E-*/

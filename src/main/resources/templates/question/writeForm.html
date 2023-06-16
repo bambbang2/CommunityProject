@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
 <head>
-  <link th:href="@{css/myInfo/style.css}" rel="stylesheet" />
+  <link th:href="@{css/question/style.css}" rel="stylesheet" />
 </head>
 <main layout:fragment="content">
 
@@ -22,6 +22,20 @@
             <option th:value="${value}" th:text="${value}"></option>
           </th:block>
         </select>
+        <div class="box">
+          <div class="tit"><strong>제목</strong></div>
+          <div class="inputBox">
+            <input type="text" placeholder="제목" th:field="*{title}">
+        </div>
+
+        <div class="box">
+          <div class="tit"><strong>질문 내용</strong></div>
+          <div class="inputBox">
+            <textarea cols="30" rows="10" placeholder="문의하실 내용을 기입해주세요" th:field="*{content}"> </textarea>
+          </div>
+        </div>
+<!--
+        <div class="box"></div>
         <ul>
           <li>
             <input type="text" placeholder="제목" th:field="*{title}">
@@ -30,10 +44,13 @@
             <textarea cols="30" rows="10" placeholder="문의하실 내용을  적어 주세요" th:field="*{content}"> </textarea>
           </li>
         </ul>
-        <button type="submit">목록</button>
-        <button type="submit">등록</button>
       </form>
-  </div>
+    </div>
+-->
+      <div class="qna_write">
+        <a><button class="qan_write_submit" type="button">등록</button></a>
+        <a th:href="@{/question/write}"><button class="qan_write_list" type="button">목록</button></a>
+      </div>
 
   <script>
         const errorMessage = "[[${errorMessage}]]";

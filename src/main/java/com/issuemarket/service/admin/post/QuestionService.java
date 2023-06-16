@@ -11,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class QuestionService {
-    private final QuestionRepository questionRepository;    //생성자 주입으로 Question Repository 사용 가능
+    private final QuestionRepository questionRepository;
+    //생성자 주입으로 Question Repository 사용 가능
 
     public void saveQuestion(QuestionForm questionForm){
         Question question = questionForm.createQuestion();
