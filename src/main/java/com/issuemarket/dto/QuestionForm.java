@@ -14,9 +14,9 @@ public class QuestionForm {
     private Long id;
     private QuestionType type;
     private QuestionCategory category;
-    @NotBlank
+    @NotBlank(message = "제목은 필수 입력값입니다")
     private String title;
-    @NotBlank
+    @NotBlank(message = "내용은 필수 입력값입니다")
     private String content;
 
     // DTO <-> 엔티티 간 변환을 도와주는 객체

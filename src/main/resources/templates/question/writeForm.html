@@ -3,60 +3,80 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
 <head>
-  <link th:href="@{css/question/style.css}" rel="stylesheet" />
+    <link th:href="@{css/question/style.css}" rel="stylesheet"/>
 </head>
 <main layout:fragment="content">
 
-  <div class="question_wrap">
-    <h1>1:1 문의하기</h1>
-      <form action="/question/write" method="post" th:object="${questionForm}">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <style>
 
-        <select th:field="*{type}">
-          <th:block th:each="value : ${questionTypes}">
-            <option th:value="${value}" th:text="${value}"></option>
-          </th:block>
-        </select>
-        <select th:field="*{category}">
-          <th:block th:each="value : ${questionCategories}">
-            <option th:value="${value}" th:text="${value}"></option>
-          </th:block>
-        </select>
-        <div class="box">
-          <div class="tit"><strong>제목</strong></div>
-          <div class="inputBox">
-            <input type="text" placeholder="제목" th:field="*{title}">
-        </div>
+    .question_wrap .tit{
+        margin: 3px 0;
+        display: flex;
+        align-items: center;
+    }
 
-        <div class="box">
-          <div class="tit"><strong>질문 내용</strong></div>
-          <div class="inputBox">
-            <textarea cols="30" rows="10" placeholder="문의하실 내용을 기입해주세요" th:field="*{content}"> </textarea>
-          </div>
-        </div>
-<!--
-        <div class="box"></div>
-        <ul>
-          <li>
-            <input type="text" placeholder="제목" th:field="*{title}">
-          </li>
-          <li>
-            <textarea cols="30" rows="10" placeholder="문의하실 내용을  적어 주세요" th:field="*{content}"> </textarea>
-          </li>
-        </ul>
-      </form>
+    .question_wrap .tit .fieldError{
+        margin-left: 5px;
+        color: red;
+    }
+
+    .question_wrap .qna_write{
+        margin-top: 10px;
+    }
+
+    </style>
+
+    <div class="question_wrap">
+        <h1>1:1 문의하기</h1>
+        <form action="/question/write" method="post" th:object="${questionForm}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+            <select th:field="*{type}">
+                <th:block th:each="value : ${questionTypes}">
+                    <option th:value="${value}" th:text="${value}"></option>
+                </th:block>
+            </select>
+            <select th:field="*{category}">
+                <th:block th:each="value : ${questionCategories}">
+                    <option th:value="${value}" th:text="${value}"></option>
+                </th:block>
+            </select>
+            <div class="box">
+                <div class="tit">
+                    <strong>제목</strong>
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="fieldError"></p>
+                </div>
+                <div class="inputBox">
+                    <input type="text" placeholder="제목" th:field="*{title}">
+                </div>
+
+                <div class="box">
+                    <div class="tit">
+                        <strong>질문 내용</strong>
+                        <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="fieldError"></p>
+                    </div>
+                    <div class="inputBox">
+                        <textarea cols="30" rows="10" placeholder="문의하실 내용을 기입해주세요" th:field="*{content}"> </textarea>
+                    </div>
+                </div>
+
+                <div class="qna_write">
+                    <button class="qna_write_submit" type="submit">등록</button>
+                    <a th:href="@{/question}">
+                        <button class="qna_write_list" type="button">목록</button>
+                    </a>
+                </div>
+
+            </div>
+        </form>
     </div>
--->
-      <div class="qna_write">
-        <a><button class="qan_write_submit" type="button">등록</button></a>
-        <a th:href="@{/question/write}"><button class="qan_write_list" type="button">목록</button></a>
-      </div>
 
-  <script>
+    <script>
         const errorMessage = "[[${errorMessage}]]";
         if(errorMessage != ""){
             alert(errorMessage);
         }
+
     </script>
 </main>
 </html>

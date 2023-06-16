@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
 <head>
-    <link th:href="@{css/question/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/question/style.css}" rel="stylesheet" />
 </head>
 <main layout:fragment="content">
 
@@ -15,12 +15,10 @@
         </div>
 
         <div class="question_btn">
-            <a th:href="@{/question/write}"><button class="qan_write_button" type="button">
+            <a th:href="@{/question/write}"><button class="qna_write_button" type="button">
                 문의하기
             </button></a>
         </div>
-
-
 
     <div class="qna_list_wrap">
             <div class="qna_title">
@@ -47,5 +45,6 @@
             alert(errorMessage);
         }
     </script>
+
 </main>
 </html>

@@ -9,7 +9,7 @@
 .question_text{
     padding:29px;
 }
-.qan_write_button{
+.qna_write_button{
     text-align : center;
     padding: 8px 0;
     border-radius: 6px;
@@ -25,10 +25,10 @@
     margin-top: 20px;
 }
 
-.qan_write_submit{
+.qna_write_submit{
 /*등록 버튼*/
 }
-.qan_write_list{
+.qna_write_list{
 /*목록 버튼*/
 }
 
