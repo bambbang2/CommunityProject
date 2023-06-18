@@ -35,7 +35,6 @@ public class MyPageController {
         MemberInfo memberInfo = memberUtil.getMember();
         Optional<Member> _member = myPageService.getMember(memberInfo.getUserId());
 
-        System.out.println("값이 담겼는지 확인하겠습니다" + _member);
 
         Member member = _member.orElse(null);
         MemberInfoRequest request = MemberInfoRequest.entityToDto(member);
