@@ -8,6 +8,9 @@ import lombok.Data;
 import lombok.NonNull;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Data
 public class QuestionForm {
 
@@ -18,6 +21,8 @@ public class QuestionForm {
     private String title;
     @NotBlank(message = "내용은 필수 입력값입니다")
     private String content;
+    private LocalDateTime createdAt;
+
 
     // DTO <-> 엔티티 간 변환을 도와주는 객체
     private static ModelMapper modelMapper = new ModelMapper();

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -26,7 +27,14 @@ public class QuestionController {
     private final QuestionRepository questionRepository;
     //문의 하기 메인
     @GetMapping({"/", ""})
-    public String main(Model model){
+    public String main(Model model, Principal principal){
+        String userId = principal.getName();
+
+        List<QuestionForm> questionFormList = questionService.getQuestionList(userId);
+
+        log.info(questionFormList.toString());
+
+        model.addAttribute("questionFormList", questionFormList);
 
         return "question/index";
     }
@@ -45,7 +53,7 @@ public class QuestionController {
     }
     //등록
     @PostMapping("/write")
-    public String writeSubmit(@Valid QuestionForm questionForm, BindingResult bindingResult, Model model){
+    public String writeSubmit(@Valid QuestionForm questionForm, Principal principal, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()) {
             List<QuestionType> questionTypes = List.of(QuestionType.values());
@@ -58,8 +66,8 @@ public class QuestionController {
             return "question/writeForm";
         }
 
-        questionService.saveQuestion(questionForm);
+        questionService.saveQuestion(questionForm, principal);
 
-        return "question/index";
+        return "redirect:/question";
     }
 }
