@@ -3,9 +3,54 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/front/main}">
 <head>
-    <link th:href="@{/css/question/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/question/style.css}" rel="stylesheet"/>
 </head>
 <main layout:fragment="content">
+
+    <style>
+        .qna_list{
+
+        }
+
+        .qna_list .qna_top{
+            font-weight: bold;
+        }
+
+        .qna_list li{
+            display: flex;
+            padding: 5px 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .qna_list li div:nth-of-type(1){
+            width: 5%;
+        }
+
+        .qna_list li div:nth-of-type(2){
+            width: 45%;
+        }
+
+        .qna_list li div:nth-of-type(3){
+            width: 20%;
+        }
+
+        .qna_list li div:nth-of-type(4){
+            width: 20%;
+        }
+
+        .qna_list li div:nth-of-type(5){
+            width: 10%;
+        }
+
+        .qna_write_button{
+            background-color: #292929;
+            color: #fff;
+            cursor: pointer;
+        }
+
+
+
+    </style>
 
     <div class="question_wrap">
         <h1>1:1 문의하기</h1>
@@ -15,36 +60,42 @@
         </div>
 
         <div class="question_btn">
-            <a th:href="@{/question/write}"><button class="qna_write_button" type="button">
-                문의하기
-            </button></a>
+            <a th:href="@{/question/write}">
+                <button class="qna_write_button" type="button">
+                    문의하기
+                </button>
+            </a>
         </div>
 
-    <div class="qna_list_wrap">
+        <div class="qna_list_wrap">
             <div class="qna_title">
                 <strong>문의하기 목록</strong>
                 <p>신속하게 처리 하도록 노력 하겠습니다.</p>
             </div>
+
+            <ul></ul>
             <div>
-            <table class="list-table">
-                <thead>
-                <tr>
-                    <th width="70">번호</th>
-                    <th width="500">제목</th>
-                    <th width="120">글쓴이</th>
-                    <th width="100">작성일</th>
-                    <th width="100">처리 상태</th>
-                </tr>
-                </thead>
-            </table>
+                <ul class="qna_list">
+
+                    <li th:each="questionForm : ${questionFormList}" th:object="${questionForm}">
+                        <div th:text="*{type}"></div>
+                        <div th:text="*{title}"></div>
+                        <div th:text="*{createdAt}"></div>
+                    </li>
+                </ul>
+
             </div>
-    </div>
-    <script>
+        </div>
+        <script>
         const errorMessage = "[[${errorMessage}]]";
         if(errorMessage != ""){
             alert(errorMessage);
         }
-    </script>
+
+
+
+
+        </script>
 
 </main>
 </html>
